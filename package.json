@@ -1,0 +1,42 @@
+{
+	"name": "events-app",
+	"version": "0.1.0",
+	"private": true,
+	"scripts": {
+		"dev": "next dev",
+		"build": "next build",
+		"format": "yarn prettier . --write",
+		"start": "next start",
+		"lint": "next lint && tsc --noEmit"
+	},
+	"lint-staged": {
+		"**/*.{js,jsx,ts,tsx}": [
+			"eslint --fix",
+			"prettier --config ./.prettierrc --write"
+		],
+		"**/*.{css,scss,md,html,json}": [
+			"prettier --config ./.prettierrc --write"
+		]
+	},
+	"dependencies": {
+		"axios": "^1.5.1",
+		"next": "13.5.4",
+		"react": "^18",
+		"react-dom": "^18",
+		"tailwind-merge": "^1.14.0"
+	},
+	"devDependencies": {
+		"@types/node": "^20",
+		"@types/react": "^18",
+		"@types/react-dom": "^18",
+		"autoprefixer": "^10",
+		"eslint": "^8",
+		"eslint-config-next": "13.5.4",
+		"husky": "^8.0.3",
+		"lint-staged": "^14.0.1",
+		"postcss": "^8",
+		"prettier": "3.0.3",
+		"tailwindcss": "^3",
+		"typescript": "^5"
+	}
+}
