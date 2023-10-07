@@ -1,4 +1,4 @@
-import { EventData } from '@/data/event';
+import { EventData } from '@/@types';
 
 const events: EventData[] = [
   {
