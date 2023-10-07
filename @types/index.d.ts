@@ -7,3 +7,9 @@ export interface HeaderProps {
   title: string;
   info: string;
 }
+export interface EventData {
+  id: number;
+  title: string;
+  start: Date;
+  end: Date;
+}
