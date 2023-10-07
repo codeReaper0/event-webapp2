@@ -9,13 +9,13 @@ export default function Sidebar() {
     <aside className="w-[320px] bg-primary h-full flex flex-col justify-between pb-8 rounded-r-3xl">
       <div className="w-full">
         {/* Icon */}
-        <div className="flex w-full justify-center">
+        <div className="flex w-full justify-center p-6">
           <Image
             src={Logo}
             alt="logo"
-            width={100}
-            height={100}
-            className="w-auto h-auto p-6"
+            width={201}
+            height={54}
+            className="w-auto h-auto"
           />
         </div>
 
