@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { TimelinePitchItem } from '@/@types';
 import Rectangle31 from '../../public/Rectangle31.png';
 import Rectangle32 from '../../public/Rectangle32.png';
 // import Rectangle27 from '../../public/Rectangle27.png';
@@ -82,16 +83,7 @@ const GroupRectangleSVG = () => (
     </svg>
 );
 
-interface PitchItem {
-    bg: string;
-    imgSrc: any;
-    name: string;
-    date: string;
-    time: string;
-    stadium: string;
-};
-
-const pitchArray: PitchItem[] = [
+const pitchArray: TimelinePitchItem[] = [
     {
         bg: 'bg-[#EEE0FF]',
         imgSrc: Rectangle31,
