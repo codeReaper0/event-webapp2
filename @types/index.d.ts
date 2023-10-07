@@ -8,8 +8,6 @@ export interface HeaderProps {
   info: string;
 }
 
-export interface TimelineProps{};
-
 export interface TimelinePitchItem {
   bg: string;
   imgSrc: any;
