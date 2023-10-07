@@ -156,7 +156,7 @@ const MyTimeline: React.FC = () => {
     ))
 
     return (
-        <div className='w-full h-[87vh] py-8 px-14 overflow-auto'>
+        <div className='w-full h-[87vh] py-8 overflow-auto'>
             {/* Header */}
             <div className="relative bg-[url('/Rectangle27.png')] bg-cover bg-center min-h-[300px]">
                 <div className="absolute inset-0 bg-gradient-to-r from-[#3F3849] via-[rgba(63, 56, 73, 0.83)] to-[rgba(63, 56, 73, 0.00)] z-0"></div>
@@ -183,7 +183,7 @@ const MyTimeline: React.FC = () => {
                 </div>
 
                 {/* Pictures Grid Container */}
-                <div className="mt-[19px] grid md:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-8 ">
+                <div className="mt-[19px] grid lg:grid-cols-2 xl:grid-cols-3 gap-x-6 gap-y-8 ">
                     {pitchData}
                 </div>
             </div>
