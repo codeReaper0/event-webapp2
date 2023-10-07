@@ -1,4 +1,4 @@
-import type {Config} from "tailwindcss";
+import type { Config } from "tailwindcss";
 
 const config: Config = {
   content: [
@@ -10,6 +10,30 @@ const config: Config = {
     extend: {
       fontFamily: {
         sans: ["Inter", "sans-serif"],
+      },
+      colors: {
+        primary: "#3F3849",
+        secondary: "#CBC5D3",
+        brand: {
+          blue: {
+            100: "#F2F1F4",
+            300: "#D2F5FE",
+          },
+          gray: {
+            100: "#F7F6F8",
+            200: "#EEE0FF",
+            300: "#F0F0F0",
+            600: "#CBC5D3",
+          },
+          pink: {
+            300: "#FFEEEB",
+            400: "#FFC6BC",
+            500: "#FFE0C4",
+          },
+          purple: {
+            "300": "#EEE0FF",
+          },
+        },
       },
     },
   },

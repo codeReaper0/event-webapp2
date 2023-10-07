@@ -1,17 +1,14 @@
 import React from "react";
-import {twMerge} from "tailwind-merge";
-import {MainLayoutProps} from "../../@types";
+import { twMerge } from "tailwind-merge";
+import { MainLayoutProps } from "../../@types";
+import Sidebar from "./sidebar";
 
-function MainLayout({children, className}: MainLayoutProps) {
+function MainLayout({ children }: MainLayoutProps) {
   return (
-    <main
-      className={twMerge(
-        "w-full relative h-screen overflow-hidden ",
-        className
-      )}
-    >
-      {children}
-    </main>
+    <div className="w-full h-screen overflow-hidden flex">
+      <Sidebar />
+      <main className="flex grow p-10">{children}</main>
+    </div>
   );
 }
 
