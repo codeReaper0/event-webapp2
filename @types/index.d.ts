@@ -7,12 +7,3 @@ export interface HeaderProps {
   title: string;
   info: string;
 }
-
-export interface TimelinePitchItem {
-  bg: string;
-  imgSrc: any;
-  name: string;
-  date: string;
-  time: string;
-  stadium: string;
-};
