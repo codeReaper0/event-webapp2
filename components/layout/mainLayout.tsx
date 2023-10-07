@@ -6,6 +6,7 @@ function MainLayout({ children }: MainLayoutProps) {
   return (
     <div className="w-full h-screen overflow-hidden flex">
       <Sidebar />
+
       <main className="flex-grow h-full overflow-y-auto px-10 pb-10 bg-brand-gray-100">
         {children}
       </main>
