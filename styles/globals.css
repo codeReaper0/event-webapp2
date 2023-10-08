@@ -3,3 +3,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* .custom-datepicker {
+    max-width: 200px;
+    border-radius: 16px;
+    border: 2px solid red;
+  } */
+  
+  /* Position the calendar icon on the left */
+  .custom-datepicker .MuiSvgIcon-root:nth-child(1) {
+    order: 0; /* Move the icon to the beginning of the flex container */
+  }

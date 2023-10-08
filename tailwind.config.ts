@@ -11,6 +11,9 @@ const config: Config = {
       fontFamily: {
         sans: ["Inter", "sans-serif"],
       },
+      screens: {
+        'xsm': '360px', // Adjust the breakpoint as needed
+      },
     },
   },
   plugins: [],
