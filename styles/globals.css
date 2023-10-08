@@ -4,7 +4,6 @@
 @tailwind components;
 @tailwind utilities;
 
-  
 .rbc-today{
     background: linear-gradient(0deg, rgba(63, 56, 73, 0.5), rgba(63, 56, 73, 0.5)),linear-gradient(0deg, #CBC5D3, #CBC5D3) !important;
 }
@@ -41,9 +40,4 @@
 
   .datepicker .MuiInputAdornment-root svg {
     color: #3F3849;
-<<<<<<< HEAD
   }
-  
-=======
-  }
->>>>>>> c7facf70dc9705a38bdaed3c29c3d14f2ca3a0a8
