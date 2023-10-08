@@ -4,13 +4,26 @@
 @tailwind components;
 @tailwind utilities;
 
-/* .custom-datepicker {
-    max-width: 200px;
-    border-radius: 16px;
-    border: 2px solid red;
-  } */
-  
-  /* Position the calendar icon on the left */
-  .custom-datepicker .MuiSvgIcon-root:nth-child(1) {
-    order: 0; /* Move the icon to the beginning of the flex container */
+.MuiInputBase-adornedEnd {
+    display: flex;
+    flex-direction: row-reverse;
   }
+  .timepicker .MuiOutlinedInput-root {
+    border: 2px solid #FFC6BC;
+    border-radius: 16px;
+    max-width: 157px;
+  }
+  .datepicker .MuiOutlinedInput-root {
+    border: 2px solid #000;
+    border-radius: 16px;
+    max-width: 157px;
+  }
+  
+  .timepicker .MuiInputAdornment-root svg {
+    color: #FFC6BC;
+  }
+
+  .datepicker .MuiInputAdornment-root svg {
+    color: #3F3849;
+  }
+  
