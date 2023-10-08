@@ -3,6 +3,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+  
 .rbc-today{
     background: linear-gradient(0deg, rgba(63, 56, 73, 0.5), rgba(63, 56, 73, 0.5)),linear-gradient(0deg, #CBC5D3, #CBC5D3) !important;
 }
@@ -17,3 +19,26 @@
     background: #FFEEEB !important;
     font-weight: 600;
 }
+
+.MuiInputBase-adornedEnd {
+    display: flex;
+    flex-direction: row-reverse;
+  }
+  .timepicker .MuiOutlinedInput-root {
+    border: 2px solid #FFC6BC;
+    border-radius: 16px;
+    max-width: 157px;
+  }
+  .datepicker .MuiOutlinedInput-root {
+    border: 2px solid #000;
+    border-radius: 16px;
+    max-width: 157px;
+  }
+  
+  .timepicker .MuiInputAdornment-root svg {
+    color: #FFC6BC;
+  }
+
+  .datepicker .MuiInputAdornment-root svg {
+    color: #3F3849;
+  }
