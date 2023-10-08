@@ -4,7 +4,7 @@ import Image from "next/image";
 export default function settings() {
   return (
     <MainLayout>
-      <div className="w-full h-full overflow-y-auto">
+      <div className="w-full">
         <div className="mb-8 w-full flex justify-between items-center">
           <div className="space-y-2">
             <h2 className=" font-bold text-2xl">Settings</h2>
