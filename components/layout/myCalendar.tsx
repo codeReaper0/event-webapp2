@@ -6,7 +6,7 @@ import events from "../../data/event";
 const localizer = momentLocalizer(moment);
 
 const MyCalendar = () => (
-  <div className="p-[40px]">
+  <div className="py-[20px]">
     <Calendar
       defaultDate={moment().toDate()}
       localizer={localizer}
@@ -15,6 +15,8 @@ const MyCalendar = () => (
       endAccessor="end"
       style={{ height: "90vh" }}
       tooltipAccessor="description"
+      views={["month"]}
+      // formats={{dayHeaderFormat:(date)=>moment(date).format("dddd @ DD")}}
     />
   </div>
 );
