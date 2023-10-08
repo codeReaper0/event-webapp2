@@ -6,7 +6,7 @@ import { HeaderProps } from "@/@types";
 
 export default function Header({ title, info }: HeaderProps) {
   return (
-    <header className="w-full flex justify-between h-max sticky top-0 bg-brand-gray-100 z-20 pt-10">
+    <header className="w-full flex justify-between h-max sticky top-0 bg-brand-gray-100 z-20 py-10">
       {/* Title section */}
       <div className="">
         <h2 className="text-2xl font-bold">{title}</h2>
