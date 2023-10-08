@@ -13,3 +13,7 @@
     background: linear-gradient(0deg, #9D7AE8, #9D7AE8),
     linear-gradient(0deg, rgba(255, 198, 188, 0.9), rgba(255, 198, 188, 0.9)) !important;
 }
+.rbc-btn-group button{
+    background: #FFEEEB !important;
+    font-weight: 600;
+}
