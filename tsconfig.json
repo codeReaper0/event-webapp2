@@ -15,9 +15,10 @@
     "incremental": true,
     "paths": {
       "@/*": ["./*"],
-	  "lib/*": ["./http/lib/*"]
+	  "lib/*": ["./http/lib/*"],
+	  "assets/*": ["./public/assets/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "components/layout/myTimeline.tsx"],
   "exclude": ["node_modules"]
 }
