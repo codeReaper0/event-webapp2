@@ -24,7 +24,7 @@ export default function Calendar() {
         title={"Calendar"}
         info={"Stay Connected to Your People’s Events."}
       />
-      <div className="w-full flex gap-[15px] border border-black/40 p-[10px] rounded-lg items-center">
+      <div className="w-full md:hidden flex gap-[15px] border border-black/40 p-[10px] rounded-lg items-center">
         <SearchIcon />
         <input
           placeholder="Find an event"
