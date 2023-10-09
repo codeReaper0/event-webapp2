@@ -3,6 +3,7 @@ import Rectangle31 from "../../public/Rectangle31.png";
 import Rectangle32 from "../../public/Rectangle32.png";
 // import Rectangle27 from '../../public/Rectangle27.png';
 import Image from "next/image";
+import Link from "next/link";
 
 const ArrowDownSVG: React.FC = () => (
   <svg
@@ -180,9 +181,11 @@ const MyTimeline: React.FC = () => {
             <p className="text-[#FFFFFF80] mt-1 text-base font-medium">
               Craft events that reflect your passions and interests.
             </p>
-            <button className="mt-8 flex gap-2 items-center py-3 px-4 text-black bg-[#FFC6BC] rounded-2xl font-sans font-medium active:bg-[#fadfc8] active:scale-[0.98]">
-              Create An Event
-            </button>
+            <form action={'/timeline/create-events'}>
+              <button type='submit' className="mt-8 flex gap-2 items-center py-3 px-4 text-black bg-[#FFC6BC] rounded-2xl font-sans font-medium active:bg-[#fadfc8] active:scale-[0.98]">
+                Create An Event
+              </button>
+            </form>
           </div>
         </div>
       </div>
