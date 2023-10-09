@@ -7,7 +7,7 @@ export default function PeopleDetails() {
   return (
     <MainLayout>
       <PeopleHeader />
-      <div className=" w-full p-6 grid gap-6 grid-cols-2 lg:grid-cols-3">
+      <div className=" w-full p-6 grid gap-6 justify-center min-[980px]:justify-start min-[980px]:grid-cols-2 min-[1230px]:grid-cols-3">
         <EventCard />
         <EventCard />
         <EventCard />
