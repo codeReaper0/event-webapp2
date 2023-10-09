@@ -1,5 +1,5 @@
 import Image from "next/image";
-import GroupRectangleSVG from "./layout/myTimeline";
+import { GroupRectangleSVG } from "./layout/TimelineCard";
 import TechiesImage from "assets/mypeople/people1.png";
 import YBNLImage from "assets/mypeople/people2.png";
 
