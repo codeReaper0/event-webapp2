@@ -3,6 +3,13 @@
     "development"
   ],
   "hints": {
+    "axe/forms": [
+      "default",
+      {
+        "label": "off"
+      }
+    ],
+
     "axe/name-role-value": [
       "default",
       {
