@@ -5,6 +5,7 @@ import Logo from "@/public/assets/auth/logo.svg";
 import Google from "@/public/assets/icon/Google.svg";
 import Twitter from "@/public/assets/icon/Twitter.svg";
 import PageIndicator from "@/public/assets/icon/pageIndicator.svg";
+import Link from "next/link";
 
 const Auth: React.FC = () => {
   return (
@@ -45,26 +46,31 @@ const Auth: React.FC = () => {
               Memorable Moments with a Thriving Community of Event Lovers.
             </p>
             <div className="mt-5 lg:pr-20 xl:pr-40">
-              <button className="flex text-sm md:text-md justify-center w-full bg-white hover:bg-gray-100 py-4 border border-gray-400 font-semibold rounded-xl">
-                <Image
-                  src={Google}
-                  width={23}
-                  height={23}
-                  className="mr-3"
-                  alt="Google SVG"
-                />
-                Continue with Google
-              </button>
-              <button className="mt-5 flex text-sm md:text-md justify-center w-full bg-red-300 hover:bg-red-300/90 py-4 border border-white font-semibold rounded-xl">
-                <Image
-                  src={Twitter}
-                  width={23}
-                  height={23}
-                  className="mr-3"
-                  alt="Twitter SVG"
-                />
-                Continue with Twitter
-              </button>
+              <Link href="/timeline">
+                <button className="flex text-sm md:text-md justify-center w-full bg-white hover:bg-gray-100 py-4 border border-gray-400 font-semibold rounded-xl">
+                  <Image
+                    src={Google}
+                    width={23}
+                    height={23}
+                    className="mr-3"
+                    alt="Google SVG"
+                  />
+                  Continue with Google
+                </button>
+              </Link>
+
+              <Link href="/timeline">
+                <button className="mt-5 flex text-sm md:text-md justify-center w-full bg-red-300 hover:bg-red-300/90 py-4 border border-white font-semibold rounded-xl">
+                  <Image
+                    src={Twitter}
+                    width={23}
+                    height={23}
+                    className="mr-3"
+                    alt="Twitter SVG"
+                  />
+                  Continue with Twitter
+                </button>
+              </Link>
             </div>
             <p className="mt-6 text-[1rem] text-gray-600">
               By continuing, you agree with our{" "}
