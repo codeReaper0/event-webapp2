@@ -7,6 +7,20 @@ export interface HeaderProps {
   title: string;
   info: string;
 }
+
+export interface EventProps {
+  photoMobile:string,
+  title: string;
+  date: string;
+  day : string;
+  time : string;
+  location: string;   
+}
+
+export interface UserProfs{
+  name: string ;
+  profilePhoto: string;
+}
 export interface EventData {
   id: number;
   title: string;
