@@ -3,6 +3,7 @@ import Image from "next/image";
 import React from "react";
 import NavLinks from "./navLinks";
 import Logo from "assets/wetindeysup.png";
+import Link from "next/link";
 
 export default function Sidebar() {
   return (
@@ -23,10 +24,12 @@ export default function Sidebar() {
         <NavLinks />
       </div>
 
-      <button className="flex gap-3 items-center text-white/50 font-medium px-12">
-        <LogoutIcon />
-        <span>Log Out</span>
-      </button>
+      <Link href='/'>
+        <button className="flex gap-3 items-center text-white/50 font-medium px-12">
+          <LogoutIcon />
+          <span>Log Out</span>
+        </button>
+      </Link>
     </aside>
   );
 }
