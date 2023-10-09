@@ -1,10 +1,8 @@
-import TimelineCard from "./TimelineCard";
 import { useState } from "react";
 import Rectangle31 from "../../public/Rectangle31.png";
 import Rectangle32 from "../../public/Rectangle32.png";
 // import Rectangle27 from '../../public/Rectangle27.png';
 import Image from "next/image";
-import Link from "next/link";
 
 const ArrowDownSVG: React.FC = () => (
   <svg
@@ -41,7 +39,8 @@ const NextBtnSVG: React.FC = () => (
     />
   </svg>
 );
-const GroupRectangleSVG: React.FC = () => (
+
+export const GroupRectangleSVG: React.FC = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width={85}
@@ -144,35 +143,69 @@ const pitchArray: TimelinePitchItem[] = [
   },
 ];
 
-const MyTimeline: React.FC = () => {
-  return (
-    <div className="w-full my-8 pb-8">
-      {/* Discover and Create */}
-      <div className="relative bg-[url('/Rectangle27.png')] bg-cover bg-center min-h-[300px]">
-        <div className="absolute inset-0 bg-gradient-to-r from-[#3F3849] via-[rgba(63, 56, 73, 0.83)] to-[rgba(63, 56, 73, 0.00)] z-0"></div>
-        <div className="p-12">
-          <div className="max-w-[420px] w-full font-sans relative z-10">
-            <h1 className="text-white font-bold text-[28px] leading-[42px]">
-              Discover and Create Memorable Events
-            </h1>
-            <p className="text-[#FFFFFF80] mt-1 text-base font-medium">
-              Craft events that reflect your passions and interests.
-            </p>
-            <form action={"/timeline/create-events"}>
-              <button
-                type="submit"
-                className="mt-8 flex gap-2 items-center py-3 px-4 text-black bg-[#FFC6BC] rounded-2xl font-sans font-medium active:bg-[#fadfc8] active:scale-[0.98]"
-              >
-                Create An Event
-              </button>
-            </form>
-          </div>
+const TimelineCard = () => {
+  const [active, setActive] = useState<"friends" | "everyone">("friends");
+
+  const pitchData = pitchArray.map((item, index) => (
+    <div key={index} className={`py-6 px-4 rounded-2xl ${item.bg}`}>
+      <Image src={item.imgSrc} className="w-full" alt="" />
+      <div className="relative mt-4 flex justify-between gap-3">
+        <span className="text-black font-sans font-medium text-base">
+          <h2 className="font-sans text-xl font-bold text-[#3F3849]">
+            {item.name}
+          </h2>
+          <h6 className="mt-3">{item.date}</h6>
+          <p className="mt-3 opacity-70">{item.time}</p>
+          <p className="mt-3 font-normal">{item.stadium}</p>
+        </span>
+        <button className="z-10 active:scale-[0.95]">
+          <NextBtnSVG />
+        </button>
+        <div className="absolute top-[-25px] right-[-16px]">
+          <GroupRectangleSVG />
         </div>
       </div>
-      {/* Timeline Card Section */}
-      <TimelineCard />
+    </div>
+  ));
+
+  return (
+    <div className="mx-auto mt-8 p-6 bg-[#F0F0F0] rounded-2xl">
+      {/* Friends and Today */}
+      <div className="flex justify-between items-center gap-10">
+        <span className="flex items-center gap-10 p-4 text-xl font-sans">
+          <button
+            className={`${
+              active === "friends"
+                ? "font-bold text-[#3F3849] underline"
+                : "font-medium text-[#84838B]"
+            } transition-all`}
+            onClick={() => setActive("friends")}
+          >
+            Friends
+          </button>
+          <button
+            className={`${
+              active === "everyone"
+                ? "font-bold text-[#3F3849] underline"
+                : "font-medium text-[#84838B]"
+            } transition-all`}
+            onClick={() => setActive("everyone")}
+          >
+            Everyone
+          </button>
+        </span>
+        <button className="bg-[#FFEEEB] rounded-2xl py-[14px] ps-[18px] pe-3 flex items-center gap-2 border border-[#0000001A] transition-all active:bg-[#fadfc8] active:scale-[0.98]">
+          <h6>Today</h6>
+          <ArrowDownSVG />
+        </button>
+      </div>
+
+      {/* Pictures Grid Container */}
+      <div className="mt-[19px] grid lg:grid-cols-2 xl:grid-cols-3 gap-x-6 gap-y-8 ">
+        {pitchData}
+      </div>
     </div>
   );
 };
 
-export default MyTimeline;
+export default TimelineCard;

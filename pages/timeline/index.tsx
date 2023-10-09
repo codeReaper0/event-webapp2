@@ -1,15 +1,16 @@
+import React from "react";
 import MainLayout from "@/components/layout/mainLayout";
 import Header from "@/components/header";
-import MyPeopleCard from "@/components/myPeopleCard";
+import MyTimeline from "@/components/layout/myTimeline";
 
-export default function People() {
+export default function Index() {
   return (
     <MainLayout>
       <Header
         title="My People"
         info="Stay Connected to Your People’s Events."
       />
-      <MyPeopleCard />
+      <MyTimeline />
     </MainLayout>
   );
 }
