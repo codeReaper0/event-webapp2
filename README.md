@@ -82,7 +82,7 @@ import MainLayout from "../components/Layout/MainLayout";
 
 function Home() {
   return (
-    <MainLayout classname="">
+    <MainLayout className="">
       <p className="text-dark-100">Home Page</p>
     </MainLayout>
   );
