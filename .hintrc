@@ -3,15 +3,13 @@
     "development"
   ],
   "hints": {
-<<<<<<< HEAD
     "axe/forms": [
       "default",
       {
         "label": "off"
       }
     ],
-=======
->>>>>>> 46d61de52cc6ca76c36c9bbd0347c2e8a0799d2b
+
     "axe/name-role-value": [
       "default",
       {
