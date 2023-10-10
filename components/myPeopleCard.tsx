@@ -2,6 +2,7 @@ import Image from "next/image";
 import { GroupRectangleSVG } from "./layout/TimelineCard";
 import TechiesImage from "assets/mypeople/people1.png";
 import YBNLImage from "assets/mypeople/people2.png";
+import Link from "next/link";
 
 interface cardItem {
   bg: string;
@@ -33,7 +34,11 @@ const cardArray: cardItem[] = [
 
 const MyPeopleCard: React.FC = () => {
   const cardData = cardArray.map((item, index) => (
-    <div key={index} className={`py-6 px-4 rounded-2xl ${item.bg}`}>
+    <Link
+      href="people-details"
+      key={index}
+      className={`py-6 px-4 rounded-2xl ${item.bg}`}
+    >
       <Image src={item.imgSrc} className="w-full" alt="" />
       <div className="relative mt-4 flex justify-between gap-3">
         <span className="text-black font-sans font-medium text-base">
@@ -46,13 +51,13 @@ const MyPeopleCard: React.FC = () => {
           <GroupRectangleSVG />
         </div>
       </div>
-    </div>
+    </Link>
   ));
 
   return (
     /* My People Card Container */
     <div className="p-6 bg-secondary rounded-2xl">
-      <div className="grid lg:grid-cols-2 xl:grid-cols-3 gap-6">{cardData}</div>
+      <div className="grid grid-cols-2 xl:grid-cols-3 gap-6">{cardData}</div>
     </div>
   );
 };

@@ -22,8 +22,11 @@ function MainLayout({ children }: MainLayoutProps) {
 
   return (
     <div>
-      <div className="lg:hidden bg-primary">
-        <Button onClick={toggleDrawer("left", true)} sx={{ width: '100%', justifyContent: 'flex-end'}}>
+      <div className="lg:hidden bg-primary p-4">
+        <Button
+          onClick={toggleDrawer("left", true)}
+          sx={{ width: "100%", justifyContent: "flex-end" }}
+        >
           <HarmburgerIcon />
         </Button>
         <Drawer
@@ -42,7 +45,9 @@ function MainLayout({ children }: MainLayoutProps) {
                   height={54}
                   className="w-auto h-auto"
                 />
-                <h3 className="text-brand-gray-100 text-lg font-bold">WetinDeySup</h3>
+                <h3 className="text-brand-gray-100 text-lg font-bold">
+                  WetinDeySup
+                </h3>
               </div>
 
               <NavLinks />
@@ -57,7 +62,7 @@ function MainLayout({ children }: MainLayoutProps) {
       </div>
       <div className="w-full h-screen overflow-hidden flex">
         <Sidebar />
-        <main className="flex-grow h-full overflow-y-auto px-10 pb-10 bg-brand-gray-100">
+        <main className="flex-grow h-full overflow-y-auto px-4 pb-4 lg:px-10 lg:pb-10 bg-brand-gray-100">
           {children}
         </main>
       </div>
