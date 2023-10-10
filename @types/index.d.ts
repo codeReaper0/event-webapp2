@@ -6,6 +6,7 @@ export interface MainLayoutProps {
 export interface HeaderProps {
   title: string;
   info: string;
+  show?: boolean;
 }
 
 export interface EventProps {

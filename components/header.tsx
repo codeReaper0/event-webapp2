@@ -4,7 +4,7 @@ import { SearchIcon } from "@/public/assets/icon/searchIcon";
 import Image from "next/image";
 import { HeaderProps } from "@/@types";
 
-export default function Header({ title, info }: HeaderProps) {
+export default function Header({ title, info, show = true }: HeaderProps) {
   return (
     <header className="w-full flex justify-between h-max sticky top-0 bg-brand-gray-100 z-20 p-4 lg:py-10">
       {/* Title section */}
@@ -16,7 +16,7 @@ export default function Header({ title, info }: HeaderProps) {
       </div>
 
       {/* Search */}
-      <div className="w-full md:w-60 xl:w-80 h-14 relative">
+      {show && <div className="w-full md:w-60 xl:w-80 h-14 relative">
         <input
           placeholder="Find an event"
           className="h-full w-full border border-black/40 rounded-2xl p-2 pl-16 text-primary placeholder:text-brand-gray-600 focus:outline-none bg-transparent"
@@ -24,7 +24,7 @@ export default function Header({ title, info }: HeaderProps) {
         <div className="absolute left-5 top-5">
           <SearchIcon />
         </div>
-      </div>
+      </div>}
 
       {/* Profile */}
       <div className="hidden md:flex gap-2 items-center">

@@ -23,6 +23,7 @@ export default function Calendar() {
       <Header
         title={"Calendar"}
         info={"Stay Connected to Your People’s Events."}
+        show={false}
       />
       <div className="w-full md:hidden flex gap-[15px] border border-black/40 p-[10px] rounded-lg items-center">
         <SearchIcon />

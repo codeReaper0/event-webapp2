@@ -10,13 +10,13 @@
 .rbc-toolbar-label{
     font-size: 25px !important ;
 }
-.rbc-event{
-    background: linear-gradient(0deg, #9D7AE8, #9D7AE8),
-    linear-gradient(0deg, rgba(255, 198, 188, 0.9), rgba(255, 198, 188, 0.9)) !important;
-}
 .rbc-btn-group button{
     background: #FFEEEB !important;
     font-weight: 600;
+}
+.rbc-event{
+  background: #FFC6BC !important;
+  border: 1px solid  #9D7AE8 !important;
 }
 
 .MuiInputBase-adornedEnd {
@@ -40,4 +40,7 @@
 
   .datepicker .MuiInputAdornment-root svg {
     color: #3F3849;
+  }
+  .rbc-button-link{
+    padding: 10px;
   }
