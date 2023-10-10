@@ -177,7 +177,7 @@ const TimelineCard = () => {
             className={`${
               active === "friends"
                 ? "font-bold text-[#3F3849] underline text-sm"
-                : "font-medium text-[#84838B] text-sm"
+                : "font-medium text-[#84838B]"
             } transition-all`}
             onClick={() => setActive("friends")}
           >
@@ -186,7 +186,7 @@ const TimelineCard = () => {
           <button
             className={`${
               active === "everyone"
-                ? "font-bold text-[#3F3849] underline text-sm"
+                ? "font-bold text-[#3F3849] underline"
                 : "font-medium text-[#84838B]"
             } transition-all`}
             onClick={() => setActive("everyone")}
@@ -195,7 +195,7 @@ const TimelineCard = () => {
           </button>
         </span>
         <button className="bg-[#FFEEEB] rounded-2xl py-[14px] ps-[18px] pe-3 flex items-center gap-2 border border-[#0000001A] transition-all active:bg-[#fadfc8] active:scale-[0.98]">
-          Today
+          <h6>Today</h6>
           <ArrowDownSVG />
         </button>
       </div>
