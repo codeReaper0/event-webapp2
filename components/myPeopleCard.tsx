@@ -57,7 +57,7 @@ const MyPeopleCard: React.FC = () => {
   return (
     /* My People Card Container */
     <div className="p-6 md:bg-secondary rounded-2xl">
-      <div className="grid grid-cols-2 xl:grid-cols-3 gap-3 sm:gap-6">{cardData}</div>
+      <div className="grid sm:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6">{cardData}</div>
     </div>
   );
 };
