@@ -176,7 +176,7 @@ const TimelineCard = () => {
           <button
             className={`${
               active === "friends"
-                ? "font-bold text-[#3F3849] underline"
+                ? "font-bold text-[#3F3849] underline text-sm"
                 : "font-medium text-[#84838B]"
             } transition-all`}
             onClick={() => setActive("friends")}
