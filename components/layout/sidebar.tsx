@@ -25,6 +25,7 @@ export default function Sidebar() {
       </div>
 
       <Link href="/">
+
         <button className="flex gap-3 items-center text-white/50 font-medium px-12">
           <LogoutIcon />
           <span>Log Out</span>
