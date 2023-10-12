@@ -4,15 +4,24 @@
 @tailwind components;
 @tailwind utilities;
 
-.rbc-today{
-    background: linear-gradient(0deg, rgba(63, 56, 73, 0.5), rgba(63, 56, 73, 0.5)),linear-gradient(0deg, #CBC5D3, #CBC5D3) !important;
+.rbc-today {
+  background: linear-gradient(
+      0deg,
+      rgba(63, 56, 73, 0.5),
+      rgba(63, 56, 73, 0.5)
+    ),
+    linear-gradient(0deg, #cbc5d3, #cbc5d3) !important;
 }
-.rbc-toolbar-label{
-    font-size: 25px !important ;
+.rbc-toolbar-label {
+  font-size: 25px !important ;
 }
-.rbc-btn-group button{
-    background: #FFEEEB !important;
-    font-weight: 600;
+.rbc-event {
+  background: linear-gradient(0deg, #9d7ae8, #9d7ae8),
+    linear-gradient(0deg, rgba(255, 198, 188, 0.9), rgba(255, 198, 188, 0.9)) !important;
+}
+.rbc-btn-group button {
+  background: #ffeeeb !important;
+  font-weight: 600;
 }
 .rbc-event{
   background: #FFC6BC !important;
@@ -20,27 +29,42 @@
 }
 
 .MuiInputBase-adornedEnd {
-    display: flex;
-    flex-direction: row-reverse;
-  }
-  .timepicker .MuiOutlinedInput-root {
-    border: 2px solid #FFC6BC;
-    border-radius: 16px;
-    max-width: 157px;
-  }
-  .datepicker .MuiOutlinedInput-root {
-    border: 2px solid #000;
-    border-radius: 16px;
-    max-width: 157px;
-  }
-  
-  .timepicker .MuiInputAdornment-root svg {
-    color: #FFC6BC;
-  }
+  display: flex;
+  flex-direction: row-reverse;
+}
+.timepicker .MuiOutlinedInput-root {
+  border: 2px solid #ffc6bc;
+  border-radius: 16px;
+  max-width: 157px;
+}
+.datepicker .MuiOutlinedInput-root {
+  border: 2px solid #000;
+  border-radius: 16px;
+  max-width: 157px;
+}
 
-  .datepicker .MuiInputAdornment-root svg {
-    color: #3F3849;
-  }
-  .rbc-button-link{
-    padding: 10px;
-  }
+.timepicker .MuiInputAdornment-root svg {
+  color: #ffc6bc;
+}
+
+.datepicker .MuiInputAdornment-root svg {
+  color: #3f3849;
+}
+* {
+  scrollbar-width: thin;
+  scrollbar-color: gray rgb(233, 233, 233);
+}
+
+*::-webkit-scrollbar {
+  width: 12px;
+}
+
+*::-webkit-scrollbar-track {
+  background: rgb(233, 233, 233);
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: gray;
+  border-radius: 20px;
+  border: 3px solid rgb(233, 233, 233);
+}

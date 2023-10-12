@@ -1,7 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Rectangle31 from "../../public/Rectangle31.png";
 import Rectangle32 from "../../public/Rectangle32.png";
-// import Rectangle27 from '../../public/Rectangle27.png';
 import Image from "next/image";
 
 const ArrowDownSVG: React.FC = () => (
@@ -83,80 +82,143 @@ export const GroupRectangleSVG: React.FC = () => (
   </svg>
 );
 
+export const LoadingSVG: React.FC = () => (
+  <svg
+    width="50px"
+    height="50px"
+    viewBox="0 0 16 16"
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    className="hds-flight-icon--animation-loading animate-spin mx-auto"
+  >
+    <g fill="#000000" fillRule="evenodd" clipRule="evenodd">
+      <path
+        d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM0 8a8 8 0 1116 0A8 8 0 010 8z"
+        opacity={0.2}
+      />
+      <path d="M7.25.75A.75.75 0 018 0a8 8 0 018 8 .75.75 0 01-1.5 0A6.5 6.5 0 008 1.5a.75.75 0 01-.75-.75z" />
+    </g>
+  </svg>
+);
+
 interface TimelinePitchItem {
+  id: string;
   bg: string;
-  imgSrc: any;
-  name: string;
+  image: string;
+  event_name: string;
+  event_end: string;
+  event_start: string;
   date: string;
   time: string;
   stadium: string;
+  updated_at: string;
+  created_at: string;
+  event_description: string;
+  location: string;
 }
 
 const pitchArray: TimelinePitchItem[] = [
-  {
-    bg: "bg-[#EEE0FF]",
-    imgSrc: Rectangle31,
-    name: "Football Game",
-    date: "20th May, 2023",
-    time: "Friday, 16:00-18:00",
-    stadium: "Teslim Balogun Stadium",
-  },
-  {
-    bg: "bg-[#D2F5FE]",
-    imgSrc: Rectangle32,
-    name: "Football Game",
-    date: "20th May, 2023",
-    time: "Friday, 16:00-18:00",
-    stadium: "Teslim Balogun Stadium",
-  },
-  {
-    bg: "bg-[#FFE0C4]",
-    imgSrc: Rectangle31,
-    name: "Football Game",
-    date: "20th May, 2023",
-    time: "Friday, 16:00-18:00",
-    stadium: "Teslim Balogun Stadium",
-  },
-  {
-    bg: "bg-[#FFC6BC]",
-    imgSrc: Rectangle31,
-    name: "Football Game",
-    date: "20th May, 2023",
-    time: "Friday, 16:00-18:00",
-    stadium: "Teslim Balogun Stadium",
-  },
-  {
-    bg: "bg-[#EEE0FF]",
-    imgSrc: Rectangle32,
-    name: "Football Game",
-    date: "20th May, 2023",
-    time: "Friday, 16:00-18:00",
-    stadium: "Teslim Balogun Stadium",
-  },
-  {
-    bg: "bg-[#FFE0C4]",
-    imgSrc: Rectangle32,
-    name: "Football Game",
-    date: "20th May, 2023",
-    time: "Friday, 16:00-18:00",
-    stadium: "Teslim Balogun Stadium",
-  },
+  // {
+
+  //   bg: "bg-[#EEE0FF]",
+  //   imgSrc: Rectangle31,
+  //   name: "Football Game",
+  //   date: "20th May, 2023",
+  //   time: "Friday, 16:00-18:00",
+  //   stadium: "Teslim Balogun Stadium",
+  // },
+  // {
+  //   bg: "bg-[#D2F5FE]",
+  //   imgSrc: Rectangle32,
+  //   name: "Football Game",
+  //   date: "20th May, 2023",
+  //   time: "Friday, 16:00-18:00",
+  //   stadium: "Teslim Balogun Stadium",
+  // },
+  // {
+  //   bg: "bg-[#FFE0C4]",
+  //   imgSrc: Rectangle31,
+  //   name: "Football Game",
+  //   date: "20th May, 2023",
+  //   time: "Friday, 16:00-18:00",
+  //   stadium: "Teslim Balogun Stadium",
+  // },
+  // {
+  //   bg: "bg-[#FFC6BC]",
+  //   imgSrc: Rectangle31,
+  //   name: "Football Game",
+  //   date: "20th May, 2023",
+  //   time: "Friday, 16:00-18:00",
+  //   stadium: "Teslim Balogun Stadium",
+  // },
+  // {
+  //   bg: "bg-[#EEE0FF]",
+  //   imgSrc: Rectangle32,
+  //   name: "Football Game",
+  //   date: "20th May, 2023",
+  //   time: "Friday, 16:00-18:00",
+  //   stadium: "Teslim Balogun Stadium",
+  // },
+  // {
+  //   bg: "bg-[#EEE0FF]",
+  //   bg: "bg-[#FFC6BC]"
+  //   bg: "bg-[#FFE0C4]",
+  //   "bg-[#D2F5FE]",
+  //   imgSrc: Rectangle32,
+  //   name: "Football Game",
+  //   date: "20th May, 2023",
+  //   time: "Friday, 16:00-18:00",
+  //   stadium: "Teslim Balogun Stadium",
+  // },
 ];
 
 const TimelineCard = () => {
+  const [data, setData] = useState<TimelinePitchItem[]>([])
+  const [isLoading, setIsLoading] = useState<boolean>(true)
   const [active, setActive] = useState<"friends" | "everyone">("friends");
+  const baseURL = 'https://wetindeysup-api.onrender.com/api/'
 
-  const pitchData = pitchArray.map((item, index) => (
-    <div key={index} className={`py-6 px-4 rounded-2xl ${item.bg}`}>
-      <Image src={item.imgSrc} className="w-full" alt="" />
+  const fetchData = (endpoint: string) => fetch(`${baseURL}/${endpoint}`)
+    .then(response => response.json())
+    .then((response: TimelinePitchItem[]) => {
+      console.log(response)
+      setData(response)
+      setIsLoading(false)
+    })
+    .catch(err => {
+      console.log('Fetch Error', err)
+      setIsLoading(false)
+    })
+
+  const convertDate = (date: string) => new Date(date)
+
+  const dynamicBg = () => {
+    const colors = ["bg-[#EEE0FF]", "bg-[#FFC6BC]", "bg-[#FFE0C4]", "bg-[#D2F5FE]"];
+    const randomNum = Math.floor(Math.random() * colors.length);
+    return colors[randomNum];
+  }
+  const dynamicImg = () => {
+    const imgs = [Rectangle31, Rectangle32];
+    const randomNum = Math.floor(Math.random() * imgs.length);
+    return imgs[randomNum];
+  }
+
+  useEffect(() => {
+    fetchData('events')
+  }, [])
+
+  // src = { dynamicImg() }
+  const pitchData = data && data.map((item) => (
+    <div key={item.id} className={`py-6 px-4 rounded-2xl ${dynamicBg()}`}>
+      <Image width={100} height={100} src={item.image || dynamicImg()} className="w-full" alt="" />
       <div className="relative mt-4 flex justify-between gap-3">
         <span className="text-black font-sans font-medium text-base">
           <h2 className="font-sans text-xl font-bold text-[#3F3849]">
-            {item.name}
+            {item.event_name}
           </h2>
-          <h6 className="mt-3">{item.date}</h6>
-          <p className="mt-3 opacity-70">{item.time}</p>
-          <p className="mt-3 font-normal">{item.stadium}</p>
+          <h6 className="mt-3">{convertDate(item.event_start).toDateString()}</h6>
+          <p className="mt-3 opacity-70">{convertDate(item.created_at).toDateString()}</p>
+          <p className="mt-3 font-normal capitalize">{item.location || 'Unlnown Location'}</p>
         </span>
         <button className="z-10 active:scale-[0.95]">
           <NextBtnSVG />
@@ -171,37 +233,35 @@ const TimelineCard = () => {
   return (
     <div className="mx-auto mt-8 p-6 bg-[#F0F0F0] rounded-2xl">
       {/* Friends and Today */}
-      <div className="flex justify-between items-center gap-2 lg:gap-10">
-        <span className="flex items-center gap-2 p-4 text-xl font-sans lg:gap-10">
+      <div className="flex justify-between items-center gap-3 lg:gap-10">
+        <span className="flex items-center gap-3 md:gap-4 py-3 px-2 sm:p-4 text-base sm:text-xl font-sans lg:gap-10">
           <button
-            className={`${
-              active === "friends"
-                ? "font-bold text-[#3F3849] underline text-sm"
-                : "font-medium text-[#84838B]"
-            } transition-all`}
+            className={`${active === "friends"
+              ? "font-bold text-[#3F3849] underline"
+              : "font-medium text-[#84838B]"
+              } transition-all`}
             onClick={() => setActive("friends")}
           >
             Friends
           </button>
           <button
-            className={`${
-              active === "everyone"
-                ? "font-bold text-[#3F3849] underline"
-                : "font-medium text-[#84838B]"
-            } transition-all`}
+            className={`${active === "everyone"
+              ? "font-bold text-[#3F3849] underline"
+              : "font-medium text-[#84838B]"
+              } transition-all`}
             onClick={() => setActive("everyone")}
           >
             Everyone
           </button>
         </span>
-        <button className="bg-[#FFEEEB] rounded-2xl py-[14px] ps-[18px] pe-3 flex items-center gap-2 border border-[#0000001A] transition-all active:bg-[#fadfc8] active:scale-[0.98]">
+        <button className="bg-[#FFEEEB] rounded-lg sm:rounded-2xl py-1 pe-1 ps-2 sm:py-[14px] sm:ps-[18px] sm:pe-3 flex items-center gap-1 sm:gap-2 border border-[#0000001A] transition-all active:bg-[#fadfc8] active:scale-[0.98]">
           <h6>Today</h6>
           <ArrowDownSVG />
         </button>
       </div>
-
+      {isLoading && <LoadingSVG />}
       {/* Pictures Grid Container */}
-      <div className="mt-[19px] grid lg:grid-cols-2 xl:grid-cols-3 gap-x-6 gap-y-8 ">
+      <div className="mt-[19px] grid sm:grid-cols-2 xl:grid-cols-3 gap-x-6 gap-y-8 relative">
         {pitchData}
       </div>
     </div>

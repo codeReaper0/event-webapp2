@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 export function useEventData() {
   const [eventData, setEventData] = useState<EventData[]>([]);
   const [error, setError] = useState<string>("");
+  const [loading, setLoading] = useState(false);
   const baseURL = process.env.NEXT_PUBLIC_API_URL;
 
   const fetchData = (endpoint: string) => fetch(`${baseURL}/${endpoint}`)
@@ -14,7 +15,6 @@ export function useEventData() {
         event_start: new Date(event.event_start),
         event_end: new Date(event.event_end),
       }));
-      console.log(formattedData);
       setEventData(formattedData);
     })
     .catch(err => {
@@ -22,8 +22,10 @@ export function useEventData() {
     });
 
   useEffect(() => {
+    setLoading(true);
     fetchData("/events");
+    setLoading(false);
   }, []);
 
-  return { events: eventData, error };
+  return { events: eventData, error, loading };
 }

@@ -11,7 +11,7 @@ const MyCalendar = () => {
     return <div>{error}</div>
   }
   return (
-    <div className="py-[20px]">
+    <div className="p-[20px]">
       <Calendar
         defaultDate={moment().toDate()}
         localizer={localizer}

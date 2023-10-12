@@ -42,3 +42,17 @@ export interface EventData {
   location: string
   updated_at: string;
 }
+
+export interface cardItem {
+  bg: string;
+  imgSrc: any;
+  name: string;
+  events: number;
+}
+
+export interface MyPeopleProps {
+  bgColor: string;
+  imgSrc: string;
+  name: string;
+  events: number;
+}
