@@ -23,13 +23,12 @@
   background: #ffeeeb !important;
   font-weight: 600;
 }
-.rbc-event{
-  background: #FFC6BC !important;
-  border: 1px solid  #9D7AE8 !important;
+.rbc-event {
+  background: #ffc6bc !important;
+  border: 1px solid #9d7ae8 !important;
 }
 
 .MuiInputBase-adornedEnd {
-
   display: flex;
   flex-direction: row-reverse;
 }
