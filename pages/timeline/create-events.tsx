@@ -12,10 +12,38 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { DesktopTimePicker } from '@mui/x-date-pickers/DesktopTimePicker';
 import dayjs from "dayjs";
 import Link from "next/link";
+import { useState } from 'react';
+import XIcon from '@/components/icons/create-event/x-icon';
+import ImageUpload from '@/components/icons/create-event/image-upload';
+import Image from 'next/image';
 
 const today = dayjs().add(0, 'day');
 
 export default function CreateEvents(props: { [x: string]: any; components: any; }) {
+
+    const [image, setImage] = useState<string | null>(null);
+    const [imageName, setImageName] = useState<string | null>(null);
+
+    const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const file = event.target.files?.[0];
+        if (file) {
+        const reader = new FileReader();
+        reader.onload = () => {
+            setImage(reader.result as string);
+        };
+        reader.readAsDataURL(file);
+        setImageName(file.name);
+        }
+    };
+
+    const handleImageRemove = () => {
+        setImage(null);
+        setImageName(null);
+        const input = document.getElementById("image-upload-input") as HTMLInputElement;
+        if (input) {
+        input.value = ""; // Reset the file input
+        }
+    };
     
     return (
             <div className='w-full lg:h-full xsm:h-full lg:bg-brand-gray-100 xsm:bg-primary shrink-0 flex lg:flex-row xsm:flex-col'>
@@ -35,26 +63,78 @@ export default function CreateEvents(props: { [x: string]: any; components: any;
                             </p>
                         </div>
                     </div>
-                    <div className="mt-8 inline-flex flex-col items-start gap-8 md:w-full xsm:w-full lg:w-[591px] lg:ml-16">
+                    <form action='' className="mt-8 inline-flex flex-col items-start gap-8 md:w-full xsm:w-full lg:w-[591px] lg:ml-16">
                         <div className='xsm:hidden lg:flex items-center gap-6 w-full'>
                             <label className='text-lg font-semibold'>Event Name:</label>
                             <input type='text' placeholder='Enter the event name' className='flex flex-grow p-4 justify-center items-center gap-2 rounded-2xl border-2 border-black bg-brand-gray-100' />
                         </div>
                         <div className='flex lg:flex-row xsm:flex-col items-start gap-6 w-full'>
-                            <label className='text-lg font-semibold'>Event <br className='lg:block xsm:hidden'/> Description:</label>
-                            <textarea placeholder='Enter the event description' className='flex flex-grow xsm:h-[122px] w-full lg:h-44 p-4 justify-center items-center gap-2 rounded-2xl border-2 lg:border-black xsm:border-brand-pink-400 bg-brand-gray-100' />
+                            <label className='text-lg font-semibold'>Event Description:</label>
+                            <textarea placeholder='Enter the event description' className='flex flex-grow xsm:h-[122px] w-full lg:h-28 p-4 justify-center items-center gap-2 rounded-2xl border-2 lg:border-black xsm:border-brand-pink-400 bg-brand-gray-100' />
                         </div>
-                        <div className='flex lg:flex-row xsm:flex-col items-start gap-4'>
-                            <h3 className='text-lg font-semibold inline-flex gap-1'><span className='xsm:hidden lg:inline-flex'>Event</span> Starts:</h3>
+                        <div className="flex lg:flex-row xsm:flex-col items-start gap-6 w-full">
+                            <label className='text-lg font-semibold'>Event <br className='hidden md:block'/> Image:</label>
+                            <div className="flex flex-grow px-2 py-4 items-center gap-2 rounded-2xl border-2 border-black bg-brand-gray-100">
+                                <div className="text-center flex items-center ">
+                                    {image ? (
+                                    <>
+                                        <Image src={image} alt="Uploaded" height={24} width={24} className="rounded items-center h-full" />
+                                        <p>{imageName}</p>
+                                        <button onClick={handleImageRemove} className="remove-button">
+                                            <XIcon />
+                                        </button>
+                                    </>
+                                    ) : (
+                                        
+                                        <ImageUpload  />
+                                    )}
+                                </div>
+                                <div className="flex items-center">
+                                            
+                                            <input
+                                            type="file"
+                                            accept="image/*"
+                                            onChange={handleImageUpload}
+                                            id="image-upload-input"
+                                            className="hidden"
+                                            />
+                                            {image ? (
+                                            null
+                                            ) : (
+                                            <label htmlFor="image-upload-input" className="cursor-pointer text-[#9CA3AF]  max-w-[347px]">
+                                                Upload an image of your event
+                                            </label>
+                                            )}
+                                        </div>
+                            </div>
+                        </div>
+                        <div className='flex lg:flex-row xsm:flex-col items-start md:items-center gap-6 w-full'>
+                            <label className='text-lg font-semibold'>Location:</label>
+                            <div className='flex flex-grow py-2 px-4 items-center gap-2 rounded-2xl border-2 border-black bg-brand-gray-100'>
+                                <LocationIconLg />
+                                <input type='text' placeholder='Enter event location' className='w-full bg-transparent p-2'/>
+                            </div>
+                        </div>
+                        <div className='flex lg:flex-row xsm:flex-col items-start md:items-center gap-6 w-full'>
+                        <label className='text-lg font-semibold'>Event <br className='hidden md:block'/> Group:</label>
+                            <div className='flex flex-grow py-2 px-4 items-center gap-2 rounded-2xl border-2 border-black bg-brand-gray-100'>
+                                <GroupIconLg />
+                                <select name="select" id="select" className='flex justify-between w-full bg-transparent p-2'>
+                                    <option value="default" className='text-[#9CA3AF]'>Enter event group</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div className='flex lg:flex-row xsm:flex-col items-start gap-6'>
+                            <label className='text-lg font-semibold inline-flex gap-1'><span className='xsm:hidden lg:inline-flex'>Event</span> Starts:</label>
                             <div className='flex items-center gap-6'>
                                 <div className='flex flex-col justify-center items-start gap-1'>
                                     <label htmlFor="date" className='font-medium text-base text-black opacity-70'>Date</label>
                                     <LocalizationProvider dateAdapter={AdapterDayjs}>
                                             <DatePicker 
-                                                views={['day', 'month']} 
+                                                views={['day', 'month', 'year']} 
                                                 openTo="day" 
-                                                format="DD MMMM"
-                                                defaultValue={today}
+                                                format="DD/MM/YY"
+                                                defaultValue="DD/MM/YY"
                                                 className='datepicker'
                                             />
                                     </LocalizationProvider>
@@ -70,8 +150,8 @@ export default function CreateEvents(props: { [x: string]: any; components: any;
                                 </div>
                             </div>
                         </div>
-                        <div className='flex lg:flex-row xsm:flex-col items-start gap-4'>
-                        <h3 className='text-lg font-semibold inline-flex gap-1'><span className='xsm:hidden lg:inline-flex'>Event </span> Ends:</h3>
+                        <div className='flex lg:flex-row xsm:flex-col items-start gap-6'>
+                        <label className='text-lg font-semibold inline-flex gap-1'><span className='xsm:hidden lg:inline-flex'>Event </span> Ends:</label>
                             <div className='flex items-center gap-6'>
                                 <div className='flex flex-col justify-center items-start gap-1'>
                                     <label htmlFor="date" className='font-medium text-base text-black opacity-70'>Date</label>
@@ -79,8 +159,8 @@ export default function CreateEvents(props: { [x: string]: any; components: any;
                                             <DatePicker 
                                                 views={['day', 'month']} 
                                                 openTo="day" 
-                                                format="DD MMMM"
-                                                defaultValue={today}
+                                                format="DD/MM/YY"
+                                                defaultValue="DD/MM/YY"
                                                 className='datepicker' 
                                                 disablePast
                                             />
@@ -103,7 +183,7 @@ export default function CreateEvents(props: { [x: string]: any; components: any;
                             </div>
                         </div>
                         <div className='xsm:hidden lg:block'>
-                            <div className='flex lg:flex-row xsm:flex-col items-center gap-4'>
+                            {/* <div className='flex lg:flex-row xsm:flex-col items-center gap-4'>
                                 <div className='flex gap-2 items-center p-2'>
                                     <LocationIconLg />
                                     <button className='lg:text-primary xsm:text-white text-base font-bold underline'>Add location</button>
@@ -113,12 +193,12 @@ export default function CreateEvents(props: { [x: string]: any; components: any;
                                     <button className='lg:text-primary xsm:text-white text-base font-bold underline'>Select Groups</button>
                                 </div>
                                 
-                            </div>
-                            <button className='mt-9 mb-36 inline-flex justify-center items-center gap-2 py-5 px-6 rounded-2xl bg-brand-pink-400 text-black text-base font-bold text-center lg:w-[312px]'>
+                            </div> */}
+                            <button type='submit' className='mt-9 mb-36 inline-flex justify-center items-center gap-2 py-5 px-6 rounded-2xl bg-brand-pink-400 text-black text-base font-bold text-center lg:w-[312px]'>
                                 Create Event
                             </button>
                         </div>
-                    </div>
+                    </form>
                 </div>
 
                 <div className='lg:hidden xsm:block px-8'>

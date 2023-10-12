@@ -41,3 +41,7 @@
   .datepicker .MuiInputAdornment-root svg {
     color: #3F3849;
   }
+
+  label {
+    min-width: 114px;
+  }
