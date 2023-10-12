@@ -23,6 +23,10 @@
   background: #ffeeeb !important;
   font-weight: 600;
 }
+.rbc-event{
+  background: #FFC6BC !important;
+  border: 1px solid  #9D7AE8 !important;
+}
 
 .MuiInputBase-adornedEnd {
 

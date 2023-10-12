@@ -5,7 +5,7 @@ import Image from "next/image";
 import SearchBar from "@/components/searchBar";
 import { HeaderProps } from "@/@types";
 
-export default function Header({ title, info }: HeaderProps) {
+export default function Header({ title, info, show = true }: HeaderProps) {
   return (
     <header className="w-full flex justify-between h-max sticky top-0 bg-brand-gray-100 z-20 p-4 lg:py-10 lg:px-0 gap-4">
       {/* Title section */}
@@ -15,7 +15,7 @@ export default function Header({ title, info }: HeaderProps) {
       </div>
 
       {/* Search */}
-      <div className="w-full md:w-60 xl:w-[352px] h-[40px] md:h-[52px] relative">
+      {show && <div className="w-full md:w-60 xl:w-80 h-14 relative">
         <input
           placeholder="Find an event"
           className="h-full w-full border border-black/40 rounded-2xl p-2 pl-16 text-primary placeholder:text-brand-gray-600 focus:outline-none bg-transparent"
