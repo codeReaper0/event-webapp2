@@ -20,8 +20,8 @@ const links = [
     activeIcon: ActiveTimelineIcon,
   },
   {
-    href: "/people",
-    name: "My People",
+    href: "/groups",
+    name: "Groups",
     icon: PeopleIcon,
     activeIcon: ActivePeopleIcon,
   },
@@ -42,7 +42,7 @@ const links = [
 export default function NavLinks() {
   const pathname = usePathname();
   return (
-    <nav className="space-y-6 p-3 w-full">
+    <nav className="space-y-6 p-7 w-full">
       <ul>
         {links.map((link) => {
           let isActive = pathname.startsWith(link.href);
@@ -55,8 +55,8 @@ export default function NavLinks() {
                 href={link.href}
                 className={
                   !isActive
-                    ? "flex gap-3 items-center text-white/50 font-medium px-11 py-5 "
-                    : "flex gap-3 items-center text-primary stroke-primary font-semibold px-11 py-5 bg-brand-gray-600 rounded-2xl"
+                    ? "flex gap-3 items-center text-white/50 font-medium px-6 py-4"
+                    : "flex gap-3 items-center text-primary stroke-primary font-semibold px-6 py-4 bg-brand-gray-600 rounded-2xl"
                 }
               >
                 {isActive ? <ActiveIcon /> : <Icon />}
