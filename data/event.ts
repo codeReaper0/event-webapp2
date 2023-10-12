@@ -21,7 +21,7 @@ const events: any[] = [
     start: new Date(2023, 10, 12, 10, 0),
     end: new Date(2023, 10, 12, 17, 0),
     description: "Heyyyyyy",
-  },
-];
+  }
+]
 
 export default events;
