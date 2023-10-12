@@ -1,14 +1,14 @@
 import { Calendar, momentLocalizer } from "react-big-calendar";
 import moment from "moment";
 import "react-big-calendar/lib/css/react-big-calendar.css";
-import { useEventData } from '@/components/hooks/useEventData';
+import { useEventData } from "@/components/hooks/useEventData";
 
 const localizer = momentLocalizer(moment);
 
 const MyCalendar = () => {
-  const {events, error} = useEventData();
-  if(error){
-    return <div>{error}</div>
+  const { events, error } = useEventData();
+  if (error) {
+    return <div>{error}</div>;
   }
   return (
     <div className="p-[20px]">
@@ -23,7 +23,7 @@ const MyCalendar = () => {
         views={["month"]}
       />
     </div>
-  )
+  );
 };
 
 export default MyCalendar;

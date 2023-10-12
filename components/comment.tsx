@@ -2,10 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { UserProfs } from "@/@types";
 
-
-const Comment = ({user}:{user:UserProfs}) => {
-
-  
+const Comment = ({ user }: { user: UserProfs }) => {
   return (
     <div className=" mx-auto max-h-[400px]  overflow-auto w-[500px] m-2">
       <div className="comments__fiel text-primary">
@@ -18,7 +15,6 @@ const Comment = ({user}:{user:UserProfs}) => {
               <p className="max-w-full overflow-wrap-normal">
                 I will be there no matter what
               </p>
-              
             </div>
           </div>
 
