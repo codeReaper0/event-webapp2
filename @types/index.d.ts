@@ -1,5 +1,6 @@
 export interface MainLayoutProps {
   children?: React.ReactNode;
+  title?: string;
   //   className?: React.ComponentProps<"div">["className"];
 }
 
@@ -39,7 +40,7 @@ export interface EventData {
   event_start: Date;
   id: string;
   image?: string;
-  location: string
+  location: string;
   updated_at: string;
 }
 export interface TimelineCardProps {

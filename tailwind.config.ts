@@ -9,7 +9,7 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        inter: "var(--font-inter)",
+        sans: ["Inter", "sans-serif"],
         montserrat: "var(--font-montserrat)",
       },
       screens: {
@@ -18,14 +18,6 @@ const config: Config = {
       colors: {
         primary: "#3F3849",
         secondary: "#CBC5D3",
-        peach: "#FFC6BC",
-        lightBlue: "#D2F5FE",
-        peachyPink: "#FFE0C4",
-        gray: "#4C4C4C",
-        lavender: "#EEE0FF",
-        charcoal: "#3F3849",
-        black: "#141414",
-        white: "#FFF",
         brand: {
           blue: {
             100: "#F2F1F4",

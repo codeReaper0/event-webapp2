@@ -11,7 +11,7 @@ import Image from "next/image";
 
 type Anchor = "left" | "top" | "bottom" | "right";
 
-function MainLayout({ children }: MainLayoutProps) {
+function MainLayout({ children, title }: MainLayoutProps) {
   const [state, setState] = useState({
     left: false,
   });
@@ -23,12 +23,16 @@ function MainLayout({ children }: MainLayoutProps) {
   return (
     <div>
       <div className="lg:hidden bg-primary p-4">
-        <Button
-          onClick={toggleDrawer("left", true)}
-          sx={{ width: "100%", justifyContent: "flex-end" }}
-        >
-          <HarmburgerIcon />
-        </Button>
+        <div className="flex items-center justify-between">
+          <h2 className="text-xl font-bold text-white">{title}</h2>
+
+          <Button
+            onClick={toggleDrawer("left", true)}
+            //   sx={{ width: "100%", justifyContent: "flex-end" }}
+          >
+            <HarmburgerIcon />
+          </Button>
+        </div>
         <Drawer
           anchor="left"
           open={state["left"]}
