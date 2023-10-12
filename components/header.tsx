@@ -2,6 +2,7 @@ import React from "react";
 import Avatar from "assets/images/avatar.png";
 import { SearchIcon } from "@/public/assets/icon/searchIcon";
 import Image from "next/image";
+import SearchBar from "@/components/searchBar";
 import { HeaderProps } from "@/@types";
 
 export default function Header({ title, info }: HeaderProps) {
@@ -22,9 +23,12 @@ export default function Header({ title, info }: HeaderProps) {
         <div className="absolute left-5 top-2 md:top-5">
           <SearchIcon />
         </div>
-      </div>
+      </div> */}
+    
+        <SearchBar />
 
       {/* Profile */}
+
       <div className="flex gap-2 items-center">
         <div className="w-12 h-12 rounded-full overflow-hidden">
           <Image
