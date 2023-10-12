@@ -3,9 +3,10 @@ import MainLayout from "@/components/layout/mainLayout";
 import MyCalendar from "@/components/layout/myCalendar";
 import Header from "@/components/header";
 import { SearchIcon } from "@/public/assets/icon/searchIcon";
-import events from '@/data/event';
+import { useEventData } from '@/components/hooks/useEventData';
 
 export default function Calendar() {
+  const {events, error} = useEventData();
   const [searchQuery, setSearchQuery] = useState('');
   const handleSearchInputChange = (data : any) => {
     setSearchQuery(data.target.value);
@@ -13,11 +14,17 @@ export default function Calendar() {
 
   const filteredEvents = events.filter((event) => {
     return (
-      event.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      event.description.toLowerCase().includes(searchQuery.toLowerCase())
+      event.event_name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      event.event_description.toLowerCase().includes(searchQuery.toLowerCase())
     );
   });
-
+  if (error)(
+    <div className="rbc-event">
+      <div className="p-[10px]">
+        <p className="text-[#333333] text-base font-medium capitalize">{error}</p>
+      </div>
+    </div>
+  )
   return (
     <MainLayout>
       <Header
@@ -25,7 +32,7 @@ export default function Calendar() {
         info={"Stay Connected to Your People’s Events."}
         show={false}
       />
-      <div className="w-full md:hidden flex gap-[15px] border border-black/40 p-[10px] rounded-lg items-center">
+      <div className="w-full flex gap-[15px] border border-black/40 p-[10px] rounded-lg items-center">
         <SearchIcon />
         <input
           placeholder="Find an event"
@@ -35,15 +42,15 @@ export default function Calendar() {
         />
       </div>
       <MyCalendar />
-      <div className="w-full md:hidden flex flex-col gap-[10px]">
+      <div className="w-full grid md:grid-cols-2 grid-cols-1 gap-[10px]">
         {filteredEvents.map((event, index) => (
           <div className="rbc-event" key={index}>
             <div className="p-[10px]">
-              <div className="flex justify-between items-center">
-                <h3 className="text-[#33313E] text-lg font-bold"> {event?.title} </h3>
-                <p className="text-xs"> {event?.start.toDateString()} </p>
+              <div className="flex justify-between items-center flex-wrap">
+                <h3 className="text-[#33313E] text-lg font-bold"> {event?.event_name} </h3>
+                <p className="text-xs"> {event?.event_start.toDateString()} </p>
               </div>
-              <p className="text-[#333333] text-base font-bold">{event?.description}</p>
+              <p className="text-[#333333] text-base font-medium capitalize">{event?.event_description}</p>
             </div>
           </div>
         ))}

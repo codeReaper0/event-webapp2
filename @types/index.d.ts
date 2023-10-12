@@ -31,9 +31,14 @@ export interface UserProfs {
   profilePhoto: string;
 }
 export interface EventData {
-  id: number;
-  title: string;
-  start: Date;
-  end: Date;
-  description: string;
+  created_at: string;
+  created_by: string;
+  event_description: string;
+  event_end: Date;
+  event_name: string;
+  event_start: Date;
+  id: string;
+  image?: string;
+  location: string
+  updated_at: string;
 }
