@@ -36,6 +36,14 @@ export interface EventData {
   end: Date;
   description: string;
 }
+export interface TimelineCardProps {
+  bg: string;
+  imgSrc: any;
+  name: string;
+  date: string;
+  time: string;
+  stadium: string;
+}
 
 export interface cardItem {
   bg: string;
