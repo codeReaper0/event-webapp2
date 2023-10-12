@@ -60,9 +60,9 @@ function MainLayout({ children }: MainLayoutProps) {
           </aside>
         </Drawer>
       </div>
-      <div className="w-full h-screen overflow-hidden flex">
+      <div className="w-full h-screen overflow-hidden flex bg-brand-gray-100">
         <Sidebar />
-        <main className="flex-grow h-full overflow-y-auto px-4 pb-4 lg:px-10 lg:pb-10 bg-brand-gray-100">
+        <main className="flex-grow h-full overflow-y-auto pb-4 lg:px-10 lg:pb-10">
           {children}
         </main>
       </div>

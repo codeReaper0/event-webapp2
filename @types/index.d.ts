@@ -36,3 +36,17 @@ export interface EventData {
   end: Date;
   description: string;
 }
+
+export interface cardItem {
+  bg: string;
+  imgSrc: any;
+  name: string;
+  events: number;
+}
+
+export interface MyPeopleProps {
+  bgColor: string;
+  imgSrc: string;
+  name: string;
+  events: number;
+}
