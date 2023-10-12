@@ -1,6 +1,6 @@
 import { EventData } from "@/@types";
 
-const events: any2[] = [
+const events: any[] = [
   {
     id: 1,
     title: "Event 1",
