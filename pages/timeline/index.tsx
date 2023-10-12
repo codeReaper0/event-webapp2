@@ -8,7 +8,7 @@ export default function Index() {
     <MainLayout>
       <Header
         title="Timeline"
-        info="Stay Connected to Your People’s Events."
+        info="Explore the events happening around you."
       />
       <MyTimeline />
     </MainLayout>

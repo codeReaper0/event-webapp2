@@ -1,11 +1,13 @@
 export interface MainLayoutProps {
   children?: React.ReactNode;
+  title?: string;
   //   className?: React.ComponentProps<"div">["className"];
 }
 
 export interface HeaderProps {
   title: string;
   info: string;
+  show?: boolean;
 }
 
 export interface EventProps {
@@ -30,9 +32,36 @@ export interface UserProfs {
   profilePhoto: string;
 }
 export interface EventData {
-  id: number;
-  title: string;
-  start: Date;
-  end: Date;
-  description: string;
+  created_at: string;
+  created_by: string;
+  event_description: string;
+  event_end: Date;
+  event_name: string;
+  event_start: Date;
+  id: string;
+  image?: string;
+  location: string;
+  updated_at: string;
+}
+export interface TimelineCardProps {
+  bg: string;
+  imgSrc: any;
+  name: string;
+  date: string;
+  time: string;
+  stadium: string;
+}
+
+export interface cardItem {
+  bg: string;
+  imgSrc: any;
+  name: string;
+  events: number;
+}
+
+export interface MyPeopleProps {
+  bgColor: string;
+  imgSrc: string;
+  name: string;
+  events: number;
 }

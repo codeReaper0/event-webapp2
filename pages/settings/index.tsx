@@ -1,3 +1,4 @@
+import Header from "@/components/header";
 import MainLayout from "@/components/layout/mainLayout";
 import Image from "next/image";
 
@@ -5,25 +6,10 @@ export default function settings() {
   return (
     <MainLayout>
       <div className="w-full">
-        <div className="mb-8 w-full flex justify-between items-center">
-          <div className="space-y-2">
-            <h2 className=" font-bold text-2xl">Settings</h2>
-            <p className=" font-normal text-base text-[#726E7C]">
-              Configure the settings to suit your preferences
-            </p>
-          </div>
-
-          <div className="flex items-center gap-2">
-            <Image
-              alt="avatar"
-              src="/assets/images/avatar.png"
-              width={47}
-              height={47}
-              className="rounded-full"
-            />
-            <span className=" font-semibold text-lg">Salome</span>
-          </div>
-        </div>
+        <Header
+          title="Settings"
+          info="Configure the settings to suit your preferences"
+        />
 
         <div className="w-full md:flex gap-8 ">
           <div className="px-4 py-6 md:w-2/5 bg-[#3F3849] rounded-2xl">

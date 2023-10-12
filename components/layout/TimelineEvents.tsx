@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Rectangle31 from "../../public/Rectangle31.png";
 import Rectangle32 from "../../public/Rectangle32.png";
-// import Rectangle27 from '../../public/Rectangle27.png';
+import caret from "../../public/arrow-down.svg";
 import Image from "next/image";
+import { TimelineCardProps } from "@/@types/index";
+import TimeLineEventCard from "../TimeLineEventCard";
 
-const ArrowDownSVG: React.FC = () => (
+export const ArrowDownSVG: React.FC = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width={24}
@@ -22,7 +24,7 @@ const ArrowDownSVG: React.FC = () => (
   </svg>
 );
 
-const NextBtnSVG: React.FC = () => (
+export const NextBtnSVG: React.FC = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width={32}
@@ -83,16 +85,7 @@ export const GroupRectangleSVG: React.FC = () => (
   </svg>
 );
 
-interface TimelinePitchItem {
-  bg: string;
-  imgSrc: any;
-  name: string;
-  date: string;
-  time: string;
-  stadium: string;
-}
-
-const pitchArray: TimelinePitchItem[] = [
+export const eventsData: TimelineCardProps[] = [
   {
     bg: "bg-[#EEE0FF]",
     imgSrc: Rectangle31,
@@ -143,69 +136,133 @@ const pitchArray: TimelinePitchItem[] = [
   },
 ];
 
-const TimelineCard = () => {
-  const [active, setActive] = useState<"friends" | "everyone">("friends");
+interface dropdownProps {
+  text: string;
+  value: string;
+}
 
-  const pitchData = pitchArray.map((item, index) => (
-    <div key={index} className={`py-6 px-4 rounded-2xl ${item.bg}`}>
-      <Image src={item.imgSrc} className="w-full" alt="" />
-      <div className="relative mt-4 flex justify-between gap-3">
-        <span className="text-black font-sans font-medium text-base">
-          <h2 className="font-sans text-xl font-bold text-[#3F3849]">
-            {item.name}
-          </h2>
-          <h6 className="mt-3">{item.date}</h6>
-          <p className="mt-3 opacity-70">{item.time}</p>
-          <p className="mt-3 font-normal">{item.stadium}</p>
-        </span>
-        <button className="z-10 active:scale-[0.95]">
-          <NextBtnSVG />
-        </button>
-        <div className="absolute top-[-25px] right-[-16px]">
-          <GroupRectangleSVG />
-        </div>
-      </div>
-    </div>
+const dropdownItems: dropdownProps[] = [
+  {
+    text: "All",
+    value: "all",
+  },
+  {
+    text: "This month",
+    value: "this-month",
+  },
+
+  {
+    text: "Last month",
+    value: "last-month",
+  },
+  {
+    text: "Last year",
+    value: "last-year",
+  },
+];
+
+const TimelineEvents = () => {
+  const [selectedItem, setSelectedItem] = useState<dropdownProps>(
+    dropdownItems[0],
+  );
+  const [active, setActive] = useState<"friends" | "everyone">("friends");
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+
+  const handleItemClick = (item: dropdownProps) => {
+    setSelectedItem(item);
+    setIsOpen(false);
+  };
+
+  const showDropdown = () => {
+    setIsOpen((prev) => !prev);
+  };
+
+  const dropdownRef = useRef<any>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: any) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener("click", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
+
+  const renderCardData = eventsData.map((item, idx) => (
+    <TimeLineEventCard key={idx} {...(item as TimelineCardProps)} />
   ));
 
   return (
-    <div className="mx-auto mt-8 p-6 bg-[#F0F0F0] rounded-2xl">
-      {/* Friends and Today */}
-      <div className="flex justify-between items-center gap-2 lg:gap-10">
-        <span className="flex items-center gap-2 p-4 text-xl font-sans lg:gap-10">
+    <div className="mx-auto mt-8 p-2 md:p-6 bg-[#F0F0F0] rounded-2xl">
+      <div className="flex flex-col md:flex-row justify-between w-full relative">
+        <div className="flex py-1 justify-start md:justify-center mb-3 md:mb-0 items-center gap-5 ">
           <button
-            className={`${
+            className={`flex items-start md:items-center gap-2 py-2 md:py-3  w-28 justify-center transition-all ease-in-out duration-200 ${
               active === "friends"
-                ? "font-bold text-[#3F3849] underline text-sm"
-                : "font-medium text-[#84838B]"
-            } transition-all`}
+                ? "border-b-2 text-charcoal transform scale-[110%]"
+                : "text-[#84838B]"
+            }`}
             onClick={() => setActive("friends")}
           >
-            Friends
+            <p className=" text-sm font-medium leading-[normal]">Friends</p>
           </button>
           <button
-            className={`${
+            className={`flex items-center gap-2 py-2 md:py-3  w-28 justify-center transition-all ease-in-out duration-200 ${
               active === "everyone"
-                ? "font-bold text-[#3F3849] underline"
-                : "font-medium text-[#84838B]"
-            } transition-all`}
+                ? "border-b-2 text-charcoal transform scale-[110%]"
+                : "text-[#84838B]"
+            }`}
             onClick={() => setActive("everyone")}
           >
-            Everyone
+            <p className=" text-sm font-medium leading-[normal]">Everyone</p>
           </button>
-        </span>
-        <button className="bg-[#FFEEEB] rounded-2xl py-[14px] ps-[18px] pe-3 flex items-center gap-2 border border-[#0000001A] transition-all active:bg-[#fadfc8] active:scale-[0.98]">
-          <h6>Today</h6>
-          <ArrowDownSVG />
-        </button>
+        </div>
+
+        <div ref={dropdownRef}>
+          <button
+            className="flex justify-between w-36 rounded-md border-2 border-[#d5c3c2] border-lg px-3 py-1 md:py-2 bg-[#FFEEEB]"
+            onClick={showDropdown}
+          >
+            {selectedItem.text} <Image src={caret} alt="arrow-down" />
+          </button>
+
+          <div
+            className={`absolute mt-2 w-36 bg-white  rounded shadow-lg z-10 transition duration-200 ease-linear ${
+              isOpen ? "translate-y-0" : "-translate-y-3"
+            }`}
+          >
+            {isOpen ? (
+              <>
+                {dropdownItems.map((item) => (
+                  <button
+                    key={item.value}
+                    className={`block px-4 py-2 text-gray w-full ${
+                      selectedItem.value === item.value
+                        ? "bg-charcoal text-white"
+                        : ""
+                    }`}
+                    onClick={() => handleItemClick(item)}
+                  >
+                    {item.text}
+                  </button>
+                ))}{" "}
+              </>
+            ) : null}
+          </div>
+        </div>
       </div>
 
       {/* Pictures Grid Container */}
-      <div className="mt-[19px] grid lg:grid-cols-2 xl:grid-cols-3 gap-x-6 gap-y-8 ">
-        {pitchData}
+      <div className="mt-9 grid md:grid-cols-2 xl:grid-cols-3 gap-x-6 gap-y-8 ">
+        {renderCardData}
       </div>
     </div>
   );
 };
 
-export default TimelineCard;
+export default TimelineEvents;

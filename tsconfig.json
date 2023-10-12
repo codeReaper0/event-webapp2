@@ -35,7 +35,7 @@
     "**/*.ts",
     "**/*.tsx",
     "components/layout/myTimeline.tsx"
-  ],
+, "components/layout/TimelineCard.tsx"  ],
   "exclude": [
     "node_modules"
   ]
