@@ -1,4 +1,4 @@
-import type { Config } from "tailwindcss";
+import type {Config} from "tailwindcss";
 
 const config: Config = {
   content: [
@@ -13,7 +13,7 @@ const config: Config = {
         montserrat: "var(--font-montserrat)",
       },
       screens: {
-        xsm: "360px", // Adjust the breakpoint as needed
+        xsm: "360px",
       },
       colors: {
         primary: "#3F3849",
