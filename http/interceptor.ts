@@ -1,7 +1,7 @@
 import axios from "axios";
 
 // axios config for server
-const API_URL = process.env.NODE_ENV === "development" ? "" : "";
+const API_URL = process.env.NEXT_PUBLIC_API_URL
 
 const http = axios.create({
   baseURL: API_URL,
@@ -10,7 +10,6 @@ const http = axios.create({
     "Content-Type": "application/json",
     "Access-Control-Allow-Origin": "*",
   },
-  //   withCredentials: true,
 });
 
 export default http;
