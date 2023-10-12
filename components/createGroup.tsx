@@ -105,7 +105,7 @@ export default function CreateGroup() {
           </Transition.Child>
 
           <div className="fixed inset-0 overflow-hidden">
-            <div className="flex min-h-full items-center justify-center text-center">
+            <div className="flex min-h-full items-center justify-center text-center p-4 md:p-0">
               <Transition.Child
                 as={Fragment}
                 enter="ease-out duration-300"
@@ -115,16 +115,16 @@ export default function CreateGroup() {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-full max-w-[450px] transform overflow-hidden max-h-[90vh] rounded-2xl bg-white py-6 text-left align-middle shadow-xl transition-all flex flex-col">
+                <Dialog.Panel className="w-full max-w-[450px] transform overflow-hidden max-h-[90vh] rounded-2xl bg-white py-4 md:py-6 text-left align-middle shadow-xl transition-all flex flex-col">
                   <Dialog.Title
                     as="div"
-                    className="flex items-center justify-between w-full px-10"
+                    className="flex items-center justify-between w-full px-4 md:px-10"
                   >
                     <div className="">
-                      <h3 className="text-2xl font-bold mb-1">
+                      <h3 className="text-base md:text-2xl font-bold mb-1">
                         Create a new group
                       </h3>
-                      <p className="text-brand-gray-400">
+                      <p className="text-sm md:text-base text-brand-gray-400">
                         Please fill in the correct details
                       </p>
                     </div>
@@ -134,7 +134,7 @@ export default function CreateGroup() {
                     </button>
                   </Dialog.Title>
 
-                  <div className="w-full flex-grow mt-6 mb-5 overflow-y-auto pl-10">
+                  <div className="w-full flex-grow mt-6 mb-5 overflow-y-auto pl-4 md:pl-10">
                     <Formik
                       initialValues={initialValues}
                       validationSchema={validationSchema}
@@ -143,7 +143,7 @@ export default function CreateGroup() {
                       {(formik) => {
                         return (
                           <Form action="" autoComplete="off">
-                            <div className="grid grid-cols-1 gap-6 pr-8">
+                            <div className="grid grid-cols-1 gap-6 pr-4 md:pr-8 text-sm sm:text-base">
                               {/* Group name */}
                               <Input
                                 name="groupName"
@@ -225,7 +225,7 @@ export default function CreateGroup() {
                                     className="w-full p-4 rounded-2xl border-2 border-black placeholder:text-brand-gray-400 font-medium"
                                     placeholder="Enter friend’s email address"
                                   />
-                                  <button className="absolute top-4 right-4 font-bold underline">
+                                  <button className="absolute top-4 right-4 font-bold underline bg-white px-2">
                                     Add friend
                                   </button>
                                 </div>
@@ -245,7 +245,7 @@ export default function CreateGroup() {
                                 {/* Friends list */}
                                 <div className="flex justify-between items-center">
                                   <div className="flex gap-2 items-center">
-                                    <div className="w-12 h-12 rounded-full overflow-hidden">
+                                    <div className="w-8 md:w-12 h-8 md:h-12 rounded-full overflow-hidden">
                                       <Image
                                         src={Avatar}
                                         alt="logo"
