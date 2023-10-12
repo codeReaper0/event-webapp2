@@ -38,7 +38,7 @@ export interface EventData {
   event_end: Date;
   event_name: string;
   event_start: Date;
-  id: string;
+  id: number;
   image?: string;
   location: string;
   updated_at: string;
