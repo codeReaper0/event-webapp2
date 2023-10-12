@@ -10,16 +10,24 @@ export interface HeaderProps {
 }
 
 export interface EventProps {
-  photoMobile:string,
+  photoMobile: string;
   title: string;
   date: string;
-  day : string;
-  time : string;
-  location: string;   
+  day: string;
+  time: string;
+  location: string;
 }
 
-export interface UserProfs{
-  name: string ;
+export interface EventCardProps {
+  bgColor: string;
+  textColor?: string;
+  btnColor?: string;
+  comments?: boolean;
+  img?: string;
+}
+
+export interface UserProfs {
+  name: string;
   profilePhoto: string;
 }
 export interface EventData {

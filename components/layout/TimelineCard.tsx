@@ -171,12 +171,12 @@ const TimelineCard = () => {
   return (
     <div className="mx-auto mt-8 p-6 bg-[#F0F0F0] rounded-2xl">
       {/* Friends and Today */}
-      <div className="flex justify-between items-center gap-10">
-        <span className="flex items-center gap-10 p-4 text-xl font-sans">
+      <div className="flex justify-between items-center gap-2 lg:gap-10">
+        <span className="flex items-center gap-2 p-4 text-xl font-sans lg:gap-10">
           <button
             className={`${
               active === "friends"
-                ? "font-bold text-[#3F3849] underline"
+                ? "font-bold text-[#3F3849] underline text-sm"
                 : "font-medium text-[#84838B]"
             } transition-all`}
             onClick={() => setActive("friends")}
