@@ -42,7 +42,7 @@ const links = [
 export default function NavLinks() {
   const pathname = usePathname();
   return (
-    <nav className="space-y-6 p-7 w-full">
+    <nav className="space-y-9 p-7 w-full">
       <ul>
         {links.map((link) => {
           let isActive = pathname.startsWith(link.href);
