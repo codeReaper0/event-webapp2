@@ -13,12 +13,6 @@ export default function Calendar() {
     setSearchQuery(data.target.value);
   };
 
-  const filteredEvents = events?.filter((event) => {
-    return (
-      event?.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      event?.description.toLowerCase().includes(searchQuery.toLowerCase())
-    );
-  });
   if (error)
     <div className="rbc-event">
       <div className="p-[10px]">
@@ -33,22 +27,10 @@ export default function Calendar() {
       <Header
         title={"Calendar"}
         info={"Stay Connected to Your People’s Events."}
-        show={false}
       />
-      <div className="px-[20px]">
-        <div className="w-full flex gap-[15px] border border-black/40 p-[10px] rounded-lg items-center">
-          <SearchIcon />
-          <input
-            placeholder="Find an event"
-            className="w-full outline-none border-none   text-primary placeholder:text-brand-gray-600 focus:outline-none bg-transparent"
-            value={searchQuery}
-            onChange={handleSearchInputChange}
-          />
-        </div>
-      </div>
       <MyCalendar />
       <div className="w-full p-[20px] grid md:grid-cols-2 grid-cols-1 gap-[10px]">
-        {filteredEvents?.map((event, index) => (
+        {events?.map((event, index) => (
           <div className="rbc-event" key={index}>
             <div className="p-[10px]">
               <div className="flex justify-between items-center flex-wrap">
@@ -63,7 +45,7 @@ export default function Calendar() {
             </div>
           </div>
         ))}
-        {filteredEvents?.length == 0 ? (
+        {events?.length == 0 ? (
           <div className="rbc-event">
             <div className="p-[10px]">
               <p className="text-[#333333] text-base font-medium capitalize">
