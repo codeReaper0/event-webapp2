@@ -1,8 +1,9 @@
 import Header from "@/components/header";
 import SettingsLayout from "@/components/layout/SettingsLayout";
 import MainLayout from "@/components/layout/mainLayout";
+import React from "react";
 
-export default function settings() {
+export default function Language() {
   return (
     <MainLayout>
       <div className="w-full">
@@ -12,7 +13,7 @@ export default function settings() {
         />
 
         <SettingsLayout>
-          <div className="p-4 mb-4 rounded-lg w-fit bg-[#FFEEEB] flex items-center gap-2.5">
+          <div className="p-4 mb-4 rounded-lg w-fit bg-[#FFC6BC] flex items-center gap-2.5">
             <svg
               width="24"
               height="24"
@@ -42,16 +43,16 @@ export default function settings() {
                 </clipPath>
               </defs>
             </svg>
-            <p className="font-bold text-lg">Notifications Settings</p>
+            <p className="font-bold text-lg">Language and Region Settings</p>
           </div>
 
           <div className="space-y-4">
             <div className="flex justify-between items-center">
               <div>
-                <h3 className=" font-semibold text-lg">Event Updates</h3>
+                <h3 className=" font-semibold text-lg">Language</h3>
                 <p className="max-w-[75%] text-black/70">
-                  Be the first to know about event changes, updates, and
-                  important announcements.
+                  Choose the language that you want to display your event page
+                  in.
                 </p>
               </div>
 
@@ -64,12 +65,11 @@ export default function settings() {
             <div className="space-y-4">
               <div className="flex justify-between items-center">
                 <div>
-                  <h3 className=" font-semibold text-lg">
-                    Networking Opportunities
-                  </h3>
+                  <h3 className=" font-semibold text-lg">Region</h3>
                   <p className="max-w-[75%] text-black/70">
-                    Get notified about potential networking opportunities at
-                    events you’re attending
+                    Choose the region that you are located in. This will help us
+                    to provide you with more relevant event recommendations and
+                    search results.
                   </p>
                 </div>
 
@@ -78,53 +78,6 @@ export default function settings() {
                   <div className="w-11 h-6 bg-[#ABA0B5] peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-[#3F3849]/20  rounded-full peer  peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all  peer-checked:bg-[#3F3849]"></div>
                 </label>
               </div>
-            </div>
-
-            <div className="flex justify-between items-center">
-              <div>
-                <h3 className=" font-semibold text-lg">Email Notifications</h3>
-                <p className="max-w-[75%] text-black/70">
-                  Set up reminders for upcoming events to make sure you never
-                  miss out.
-                </p>
-              </div>
-
-              <label className="relative inline-flex items-center cursor-pointer">
-                <input type="checkbox" value="" className="sr-only peer" />
-                <div className="w-11 h-6 bg-[#ABA0B5] peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-[#3F3849]/20  rounded-full peer  peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all  peer-checked:bg-[#3F3849]"></div>
-              </label>
-            </div>
-
-            <div className="flex justify-between items-center">
-              <div>
-                <h3 className=" font-semibold text-lg">
-                  Push Notifications and in-app
-                </h3>
-                <p className="max-w-[75%] text-black/70">
-                  Set up reminders for upcoming events to make sure you never
-                  miss out.
-                </p>
-              </div>
-
-              <label className="relative inline-flex items-center cursor-pointer">
-                <input type="checkbox" value="" className="sr-only peer" />
-                <div className="w-11 h-6 bg-[#ABA0B5] peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-[#3F3849]/20  rounded-full peer  peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all  peer-checked:bg-[#3F3849]"></div>
-              </label>
-            </div>
-
-            <div className="flex justify-between items-center">
-              <div>
-                <h3 className=" font-semibold text-lg">Reminders</h3>
-                <p className="max-w-[75%] text-black/70">
-                  Set up reminders for upcoming events to make sure you never
-                  miss out.
-                </p>
-              </div>
-
-              <label className="relative inline-flex items-center cursor-pointer">
-                <input type="checkbox" value="" className="sr-only peer" />
-                <div className="w-11 h-6 bg-[#ABA0B5] peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-[#3F3849]/20  rounded-full peer  peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all  peer-checked:bg-[#3F3849]"></div>
-              </label>
             </div>
           </div>
         </SettingsLayout>
