@@ -38,7 +38,7 @@ export interface EventData {
   event_end: Date;
   event_name: string;
   event_start: Date;
-  id: string;
+  id: number;
   image?: string;
   location: string;
   updated_at: string;
@@ -64,4 +64,16 @@ export interface MyPeopleProps {
   imgSrc: string;
   name: string;
   events: number;
+}
+
+type FormValues = {
+  title: string;
+  description: string;
+  location: string;
+  start_date: string;
+  group: number;
+  end_date: string;
+  start_time: string;
+  end_time: string;
+  image: string | null;
 }

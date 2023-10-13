@@ -1,12 +1,12 @@
-import React from 'react'
-import DescriptionComment from '@/components/descriptionComment'
+import React from "react";
+import DescriptionComment from "@/components/descriptionComment";
 
 const comments = () => {
   return (
     <div>
       <DescriptionComment />
     </div>
-  )
-}
+  );
+};
 
-export default comments
+export default comments;

@@ -28,10 +28,8 @@ const DescriptionComment = () => {
     user: UserProfs;
   }
   return (
-
     <MainLayout>
       <div className="w-full">
-
         <div className="flex flex-col lg:max-w-[980px] lg:mx-auto w-full">
           <div className="gap-2 hidden lg:flex m-2 items-center">
             <Image

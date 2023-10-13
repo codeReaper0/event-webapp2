@@ -1,4 +1,4 @@
-import * as React from 'react';
+import * as React from "react";
 import Sidebar from "@/components/layout/sidebar";
 import ArrowUpLg from "@/components/icons/create-event/arrow-up-lg";
 import ArrowUpSm from "@/components/icons/create-event/arrow-up-sm";
@@ -6,10 +6,10 @@ import LocationIconLg from "@/components/icons/create-event/location-lg";
 import GroupIconLg from "@/components/icons/create-event/group-lg";
 import LocationIconSm from "@/components/icons/create-event/location-sm";
 import GroupIconSm from "@/components/icons/create-event/group-sm";
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import { DesktopTimePicker } from '@mui/x-date-pickers/DesktopTimePicker';
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import { DesktopTimePicker } from "@mui/x-date-pickers/DesktopTimePicker";
 import dayjs from "dayjs";
 import Link from "next/link";
 import { useState } from 'react';
@@ -18,20 +18,11 @@ import ImageUpload from '@/components/icons/create-event/image-upload';
 import Image from 'next/image';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useRouter } from 'next/router';
+import { FormValues } from "@/@types";
 
 const today = dayjs().add(0, 'day');
 
-type FormValues = {
-    title: string;
-    description: string;
-    location: string;
-    start_date: string;
-    group: number;
-    end_date: string;
-    start_time: string;
-    end_time: string;
-    image: string | null;
-}
+
 
 export default function CreateEvents(props: { [x: string]: any; components: any; }) {
 
@@ -222,7 +213,7 @@ export default function CreateEvents(props: { [x: string]: any; components: any;
                                         })}
                                     >
                                         <option className='text-[#9CA3AF]'>Enter event group</option>
-                                        <option value="1">1</option>
+                                        <option value="0">0</option>
                                     </select>
                                 </div>
                                 {errors.group && <p className="text-red-500">{errors.group.message}</p>}

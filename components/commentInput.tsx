@@ -14,7 +14,7 @@ const CommentInput = () => {
         className=' cursor-pointer' alt={''}    />
   </div>
     </div>
-  )
-}
+  );
+};
 
-export default CommentInput
+export default CommentInput;
