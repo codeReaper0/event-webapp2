@@ -6,20 +6,21 @@ import { useEventData } from "@/components/hooks/useEventData";
 const localizer = momentLocalizer(moment);
 
 const MyCalendar = () => {
-  const { events, error } = useEventData();
+  const { events:eventsData, error } = useEventData();
   if (error) {
-    return <div>{error}</div>;
+    return <div className="p-[20px]">{error}</div>;
   }
   return (
     <div className="p-[20px]">
       <Calendar
         defaultDate={moment().toDate()}
         localizer={localizer}
-        events={events}
-        startAccessor="event_start"
-        endAccessor="event_end"
+        events={eventsData}
+        startAccessor="start_date"
+        endAccessor="end_date"
+        titleAccessor="title"
         style={{ height: "80vh" }}
-        tooltipAccessor="event_description"
+        tooltipAccessor="description"
         views={["month"]}
       />
     </div>

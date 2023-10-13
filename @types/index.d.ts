@@ -7,7 +7,6 @@ export interface MainLayoutProps {
 export interface HeaderProps {
   title: string;
   info: string;
-  show?: boolean;
 }
 
 export interface EventProps {
@@ -32,16 +31,17 @@ export interface UserProfs {
   profilePhoto: string;
 }
 export interface EventData {
-  created_at: string;
-  created_by: string;
-  event_description: string;
-  event_end: Date;
-  event_name: string;
-  event_start: Date;
-  id: number;
-  image?: string;
+  id: string;
+  creator: string;
+  title: string;
+  description: string;
   location: string;
-  updated_at: string;
+  start_date: Date;
+  group: string;
+  end_date: Date;
+  start_time: string;
+  end_time: string;
+  image: string;
 }
 export interface TimelineCardProps {
   bg: string;
