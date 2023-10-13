@@ -5,21 +5,18 @@ export function useEventData() {
   const [eventData, setEventData] = useState<EventData[]>([]);
   const [error, setError] = useState<string>("");
   const [loading, setLoading] = useState(false);
-  // const baseURL = process.env.NEXT_PUBLIC_API_URL;
-  const baseURL = "https://events-be-python-mrwc1kqzj-fikayos-projects-0e7310e4.vercel.app/api";
-  const token = "randoemerjrjerer";
+  const baseURL = process.env.NEXT_PUBLIC_API_URL;
   
   const fetchData = (endpoint: string) => {
     fetch(`${baseURL}${endpoint}`, {
       method: "GET",
       headers: {
-        // 'Authorization': `Bearer ${token}`,
         'content-type': 'application/json',
       },
     })
     .then((response) => {
       if (!response.ok) {
-        throw new Error('Network response was not ok'); // Customize this error message
+        throw new Error('Network response was not ok');
       }
       return response.json();
     })
