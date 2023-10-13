@@ -10,9 +10,10 @@ const config: Config = {
     extend: {
       fontFamily: {
         sans: ["Inter", "sans-serif"],
+        montserrat: "var(--font-montserrat)",
       },
       screens: {
-        'xsm': '360px', // Adjust the breakpoint as needed
+        xsm: "360px",
       },
       colors: {
         primary: "#3F3849",
@@ -38,11 +39,9 @@ const config: Config = {
           },
         },
       },
+    },
   },
-},
   plugins: [],
 };
 
 export default config;
-
-

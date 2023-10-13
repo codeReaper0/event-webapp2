@@ -18,11 +18,8 @@ export default function People() {
   };
 
   return (
-    <MainLayout>
-      <Header
-        title="My People"
-        info="Stay Connected to Your People’s Events."
-      />
+    <MainLayout title="Groups">
+      <Header title="My Groups" info="Stay Connected to Your Group's Events." />
       <div className="p-4 lg:p-0">
         <CreateGroup />
         {groups ? (
@@ -31,7 +28,7 @@ export default function People() {
           </div>
         ) : (
           <p className="text-xl p-4 text-center">
-            There are no groups currently, kindly create one.
+            There are no groups currently, create one to connect with friends.
           </p>
         )}
       </div>

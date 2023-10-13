@@ -1,9 +1,9 @@
 import Image from "next/image";
-import { GroupRectangleSVG } from "./layout/TimelineCard";
 // import TechiesImage from "assets/mypeople/people1.png";
 // import YBNLImage from "assets/mypeople/people2.png";
 import Link from "next/link";
 import { MyPeopleProps } from "@/@types";
+import { GroupRectangleSVG } from "./layout/TimelineEvents";
 
 const MyPeopleCard = ({ bgColor, imgSrc, name, events }: MyPeopleProps) => {
   return (
