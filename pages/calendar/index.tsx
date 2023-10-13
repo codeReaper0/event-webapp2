@@ -2,9 +2,7 @@ import React, { useState } from "react";
 import MainLayout from "@/components/layout/mainLayout";
 import MyCalendar from "@/components/layout/myCalendar";
 import Header from "@/components/header";
-import { SearchIcon } from "@/public/assets/icon/searchIcon";
 import { useEventData } from '@/components/hooks/useEventData';
-// import { LoadingSVG } from '@/components/layout/TimelineCard';
 
 export default function Calendar() {
   const { events, error, loading } = useEventData();
@@ -12,16 +10,6 @@ export default function Calendar() {
   const handleSearchInputChange = (data: any) => {
     setSearchQuery(data.target.value);
   };
-
-  if (error)
-    <div className="rbc-event">
-      <div className="p-[10px]">
-        <p className="text-[#333333] text-base font-medium capitalize">
-          {error}
-        </p>
-      </div>
-    </div>;
-  //   if (loading) <LoadingSVG />;
   return (
     <MainLayout>
       <Header
