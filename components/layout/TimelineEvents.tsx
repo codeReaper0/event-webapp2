@@ -128,8 +128,9 @@ const dropdownItems: dropdownProps[] = [
 ];
 
 const TimelineEvents = () => {
-  const [evetData, setEventData] = useState<TimelineCardProps[]>([])
-  const [isLoading, setIsLoading] = useState<boolean>(true)
+  const [evetData, setEventData] = useState<TimelineCardProps[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+
   const [selectedItem, setSelectedItem] = useState<dropdownProps>(
     dropdownItems[0],
   );
@@ -155,16 +156,18 @@ const TimelineEvents = () => {
     };
 
     fetch(`https://wetindeysup-api.onrender.com/api/events`)
-      .then(response => response.json())
+
+      .then((response) => response.json())
       .then((response: TimelineCardProps[]) => {
-        console.log(response)
-        setEventData(response)
-        setIsLoading(false)
+        console.log(response);
+        setEventData(response);
+        setIsLoading(false);
       })
-      .catch(err => {
-        console.log('Fetch Error', err)
-        setIsLoading(false)
-      })
+      .catch((err) => {
+        console.log("Fetch Error", err);
+        setIsLoading(false);
+      });
+
 
     document.addEventListener("click", handleClickOutside);
 
@@ -182,19 +185,25 @@ const TimelineEvents = () => {
       <div className="flex flex-col sm:flex-row justify-between w-full relative">
         <div className="flex p-2 md:p-4 justify-start md:justify-center mb-3 md:mb-0 items-center gap-5 sm:gap-10 ">
           <button
-            className={`transform transition-all ease-in-out duration-200 text-xl ${active === "friends"
-              ? "border-b-2 border-[#3F3849] font-bold text-[#3F3849]"
-              : "text-[#84838B] font-medium"
-              }`}
+
+            className={`transform transition-all ease-in-out duration-200 text-xl ${
+              active === "friends"
+                ? "border-b-2 border-[#3F3849] font-bold text-[#3F3849]"
+                : "text-[#84838B] font-medium"
+            }`}
+
             onClick={() => setActive("friends")}
           >
             Friends
           </button>
           <button
-            className={`transform transition-all ease-in-out duration-200 text-xl ${active === "everyone"
-              ? "border-b-2 border-[#3F3849] font-bold text-[#3F3849]"
-              : "text-[#84838B] font-medium"
-              }`}
+
+            className={`transform transition-all ease-in-out duration-200 text-xl ${
+              active === "everyone"
+                ? "border-b-2 border-[#3F3849] font-bold text-[#3F3849]"
+                : "text-[#84838B] font-medium"
+            }`}
+
             onClick={() => setActive("everyone")}
           >
             Everyone
@@ -218,11 +227,14 @@ const TimelineEvents = () => {
                 {dropdownItems.map((item) => (
                   <button
                     key={item.value}
-                    className={`block px-4 py-2 text-gray w-full ${selectedItem.value === item.value
-                      ? "bg-[#3F3849] text-white"
-                      : ""
-                      }`}
-                    onClick={(e) => handleItemClick(item)}
+
+                    className={`block px-4 py-2 text-gray text-sm w-full ${
+                      selectedItem.value === item.value
+                        ? "bg-primary text-white"
+                        : ""
+                    }`}
+                    onClick={() => handleItemClick(item)}
+
                   >
                     {item.text}
                   </button>
@@ -232,7 +244,13 @@ const TimelineEvents = () => {
           </div>
         </div>
       </div>
-      {isLoading && <div className="pt-6"><LoadingSVG /></div>}
+
+      {isLoading && (
+        <div className="pt-6">
+          <LoadingSVG />
+        </div>
+      )}
+
       {/* Pictures Grid Container */}
       <div className="mt-9 grid md:grid-cols-2 xl:grid-cols-3 gap-x-6 gap-y-8 ">
         {evetData && renderCardData}
