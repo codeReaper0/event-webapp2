@@ -74,3 +74,15 @@ export interface MyPeopleProps {
   name: string;
   events: number;
 }
+
+type FormValues = {
+  title: string;
+  description: string;
+  location: string;
+  start_date: string;
+  group: number;
+  end_date: string;
+  start_time: string;
+  end_time: string;
+  image: string | null;
+}

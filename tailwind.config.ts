@@ -13,7 +13,7 @@ const config: Config = {
         montserrat: "var(--font-montserrat)",
       },
       screens: {
-        xsm: "360px",
+        'xsm': '360px', // Adjust the breakpoint as needed
       },
       colors: {
         primary: "#3F3849",

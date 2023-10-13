@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { UserProfs } from "@/@types";
+import Image from "next/image";
 
 const Comment = ({ user }: { user: UserProfs }) => {
   return (
@@ -9,7 +10,7 @@ const Comment = ({ user }: { user: UserProfs }) => {
         <div className=" gap-2 ">
           {/* comment */}
           <div className="comment flex m-2 gap-2 text-center items-center">
-            <img className="user__profile-photo" src={user.profilePhoto} />
+            <Image className="user__profile-photo" src={user.profilePhoto} alt={""} />
             <div className="comment__contsinerv border-2 border-primary p-1 rounded-lg text-left max-w-[350px]">
               <span className="user-name  text-xs">{user.name}</span>
               <p className="max-w-full overflow-wrap-normal">
@@ -19,7 +20,7 @@ const Comment = ({ user }: { user: UserProfs }) => {
           </div>
 
           <div className="comment flex m-2 gap-2 text-center items-center">
-            <img className="user__profile-photo" src={user.profilePhoto} />
+            <Image className="user__profile-photo" src={user.profilePhoto} alt={""} />
             <div className="comment__contsinerv border-2 border-primary p-1 rounded-lg text-left max-w-[350px]">
               <span className="user-name  text-xs">{user.name}</span>
               <p className="max-w-full overflow-wrap-normal">
@@ -28,7 +29,7 @@ const Comment = ({ user }: { user: UserProfs }) => {
                 going to be happy with the , because they worth it not many will
                 understand what i am saying, only few will relate to this issue
               </p>
-              <img src="/assets/comments/player.png" />
+              <Image alt={""} src="/assets/comments/player.png" />
             </div>
           </div>
         </div>
