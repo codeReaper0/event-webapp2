@@ -16,17 +16,8 @@ export default function Header({ title, info, show = true }: HeaderProps) {
       </div>
 
       {/* Search */}
-      {show && <div className="w-full md:w-60 xl:w-80 h-14 relative">
-        <input
-          placeholder="Find an event"
-          className="h-full w-full border border-black/40 rounded-2xl p-2 pl-16 text-primary placeholder:text-brand-gray-600 focus:outline-none bg-transparent"
-        />
-        <div className="absolute left-5 top-2 md:top-5">
-          <SearchIcon />
-        </div>
-      </div> */}
-    
-        <SearchBar />
+      
+        {show && <SearchBar />}
 
       {/* Profile */}
       <div className="hidden lg:flex gap-2 items-center">
