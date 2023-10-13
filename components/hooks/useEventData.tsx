@@ -30,10 +30,8 @@ export function useEventData() {
         end_date: new Date(`${event.end_date}T${event.end_time}`),
       }));
       setEventData(formattedData);
-      console.log(eventData);
     })
     .catch((err) => {
-      console.log(err);
       setError(err.message);
     });
   }

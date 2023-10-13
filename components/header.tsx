@@ -6,7 +6,6 @@ import SearchBar from "@/components/searchBar";
 import { HeaderProps } from "@/@types";
 
 export default function Header({ title, info, show = true }: HeaderProps) {
-  console.log(show);
   return (
     <header className="w-full flex justify-between h-max sticky top-0 bg-brand-gray-100 z-20 p-4 lg:py-10 lg:px-0 gap-4">
       {/* Title section */}
