@@ -6,15 +6,15 @@ export function useEventData() {
   const [error, setError] = useState<string>("");
   const [loading, setLoading] = useState(false);
   // const baseURL = process.env.NEXT_PUBLIC_API_URL;
-  const baseURL = "https://events-be-python-psi.vercel.app/api";
+  const baseURL = "https://events-be-python-mrwc1kqzj-fikayos-projects-0e7310e4.vercel.app/api/events/all/";
   const token = "randoemerjrjerer";
   
   const fetchData = (endpoint: string) => {
     fetch(`${baseURL}/${endpoint}`, {
       method: "GET",
       headers: {
-        'Authorization': `Bearer ${token}`,
-        'Content-Type': 'application/json',
+        // 'Authorization': `Bearer ${token}`,
+        'content-type': 'application/json',
       },
     })
     .then((response) => {

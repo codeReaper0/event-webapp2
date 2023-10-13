@@ -16,9 +16,7 @@ export default function Header({ title, info, show = true }: HeaderProps) {
       </div>
 
       {/* Search */}
-      {show ? (
-        <SearchBar />
-      ) : null}
+      {show && (<SearchBar />)}
 
       {/* Profile */}
       <div className="hidden lg:flex gap-2 items-center">
