@@ -19,6 +19,8 @@ import Image from 'next/image';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useRouter } from 'next/router';
 import { FormValues } from "@/@types";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const today = dayjs().add(0, 'day');
 
@@ -63,12 +65,39 @@ export default function CreateEvents(props: { [x: string]: any; components: any;
     
           if (response.status === 201) {
             console.log('Event created successfully.');
+            toast.success('Event created successfully', {
+                position: 'top-right',
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                theme: 'light',
+              });
             router.push('/timeline');
           } else {
             console.error('Event creation error.');
+            toast.error('Event creation error', {
+                position: 'top-right',
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                theme: 'light',
+              });
           }
         } catch (error) {
           console.error('An error occurred:', error);
+          toast.error('An error occurred', {
+            position: 'top-right',
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            theme: 'light',
+          });
         }
       };
 
@@ -110,6 +139,18 @@ export default function CreateEvents(props: { [x: string]: any; components: any;
                 </div>
                 <div className='h-full lg:pl-16 lg:pt-14 xsm:p-8 lg:rounded-none xsm:rounded-3xl lg:m-0 xsm:m-4 xsm:bg-white lg:bg-brand-gray-100'>
                     <div className='flex items-center gap-6'>
+                        <ToastContainer
+                            position="top-right"
+                            autoClose={5000}
+                            hideProgressBar={false}
+                            newestOnTop={false}
+                            closeOnClick
+                            rtl={false}
+                            pauseOnFocusLoss
+                            draggable
+                            pauseOnHover
+                            theme="light"
+                        />
                         <Link href='/timeline'>
                             <ArrowUpLg />
                             <ArrowUpSm />
@@ -256,7 +297,7 @@ export default function CreateEvents(props: { [x: string]: any; components: any;
                                     <label htmlFor="date" className='font-medium text-base text-black opacity-70'>Date</label>
                                     <LocalizationProvider dateAdapter={AdapterDayjs}>
                                             <DatePicker 
-                                                views={['day', 'month']} 
+                                                views={['day', 'month', 'year']} 
                                                 openTo="day" 
                                                 format="DD/MM/YY"
                                                 defaultValue={null}
