@@ -1,6 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-import Rectangle31 from "../../public/Rectangle31.png";
-import Rectangle32 from "../../public/Rectangle32.png";
 import caret from "../../public/arrow-down.svg";
 import Image from "next/image";
 import { TimelineCardProps } from "@/@types/index";
@@ -85,56 +83,24 @@ export const GroupRectangleSVG: React.FC = () => (
   </svg>
 );
 
-export const eventsData: TimelineCardProps[] = [
-  {
-    bg: "bg-[#EEE0FF]",
-    imgSrc: Rectangle31,
-    name: "Football Game",
-    date: "20th May, 2023",
-    time: "Friday, 16:00-18:00",
-    stadium: "Teslim Balogun Stadium",
-  },
-  {
-    bg: "bg-[#D2F5FE]",
-    imgSrc: Rectangle32,
-    name: "Football Game",
-    date: "20th May, 2023",
-    time: "Friday, 16:00-18:00",
-    stadium: "Teslim Balogun Stadium",
-  },
-  {
-    bg: "bg-[#FFE0C4]",
-    imgSrc: Rectangle31,
-    name: "Football Game",
-    date: "20th May, 2023",
-    time: "Friday, 16:00-18:00",
-    stadium: "Teslim Balogun Stadium",
-  },
-  {
-    bg: "bg-[#FFC6BC]",
-    imgSrc: Rectangle31,
-    name: "Football Game",
-    date: "20th May, 2023",
-    time: "Friday, 16:00-18:00",
-    stadium: "Teslim Balogun Stadium",
-  },
-  {
-    bg: "bg-[#EEE0FF]",
-    imgSrc: Rectangle32,
-    name: "Football Game",
-    date: "20th May, 2023",
-    time: "Friday, 16:00-18:00",
-    stadium: "Teslim Balogun Stadium",
-  },
-  {
-    bg: "bg-[#FFE0C4]",
-    imgSrc: Rectangle32,
-    name: "Football Game",
-    date: "20th May, 2023",
-    time: "Friday, 16:00-18:00",
-    stadium: "Teslim Balogun Stadium",
-  },
-];
+export const LoadingSVG: React.FC = () => (
+  <svg
+    width="50px"
+    height="50px"
+    viewBox="0 0 16 16"
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    className="hds-flight-icon--animation-loading animate-spin mx-auto"
+  >
+    <g fill="#000000" fillRule="evenodd" clipRule="evenodd">
+      <path
+        d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM0 8a8 8 0 1116 0A8 8 0 010 8z"
+        opacity={0.2}
+      />
+      <path d="M7.25.75A.75.75 0 018 0a8 8 0 018 8 .75.75 0 01-1.5 0A6.5 6.5 0 008 1.5a.75.75 0 01-.75-.75z" />
+    </g>
+  </svg>
+);
 
 interface dropdownProps {
   text: string;
@@ -162,10 +128,12 @@ const dropdownItems: dropdownProps[] = [
 ];
 
 const TimelineEvents = () => {
+  const [evetData, setEventData] = useState<TimelineCardProps[]>([])
+  const [isLoading, setIsLoading] = useState<boolean>(true)
   const [selectedItem, setSelectedItem] = useState<dropdownProps>(
     dropdownItems[0],
   );
-  const [active, setActive] = useState<"friends" | "everyone">("friends");
+  const [active, setActive] = useState<string>("");
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const handleItemClick = (item: dropdownProps) => {
@@ -186,6 +154,18 @@ const TimelineEvents = () => {
       }
     };
 
+    fetch(`https://wetindeysup-api.onrender.com/api/events`)
+      .then(response => response.json())
+      .then((response: TimelineCardProps[]) => {
+        console.log(response)
+        setEventData(response)
+        setIsLoading(false)
+      })
+      .catch(err => {
+        console.log('Fetch Error', err)
+        setIsLoading(false)
+      })
+
     document.addEventListener("click", handleClickOutside);
 
     return () => {
@@ -193,60 +173,56 @@ const TimelineEvents = () => {
     };
   }, []);
 
-  const renderCardData = eventsData.map((item, idx) => (
-    <TimeLineEventCard key={idx} {...(item as TimelineCardProps)} />
+  const renderCardData = evetData.map((item) => (
+    <TimeLineEventCard key={item.id} {...(item as TimelineCardProps)} />
   ));
 
   return (
-    <div className="mx-auto mt-8 p-2 md:p-6 bg-[#F0F0F0] rounded-2xl">
-      <div className="flex flex-col md:flex-row justify-between w-full relative">
-        <div className="flex py-1 justify-start md:justify-center mb-3 md:mb-0 items-center gap-5 ">
+    <div className="mx-auto mt-8 p-2 sm:p-6 bg-[#F0F0F0] rounded-2xl">
+      <div className="flex flex-col sm:flex-row justify-between w-full relative">
+        <div className="flex p-2 md:p-4 justify-start md:justify-center mb-3 md:mb-0 items-center gap-5 sm:gap-10 ">
           <button
-            className={`flex items-start md:items-center gap-2 py-2 md:py-3  w-28 justify-center transition-all ease-in-out duration-200 ${
-              active === "friends"
-                ? "border-b-2 text-charcoal transform scale-[110%]"
-                : "text-[#84838B]"
-            }`}
+            className={`transform transition-all ease-in-out duration-200 text-xl ${active === "friends"
+              ? "border-b-2 border-[#3F3849] font-bold text-[#3F3849]"
+              : "text-[#84838B] font-medium"
+              }`}
             onClick={() => setActive("friends")}
           >
-            <p className=" text-sm font-medium leading-[normal]">Friends</p>
+            Friends
           </button>
           <button
-            className={`flex items-center gap-2 py-2 md:py-3  w-28 justify-center transition-all ease-in-out duration-200 ${
-              active === "everyone"
-                ? "border-b-2 text-charcoal transform scale-[110%]"
-                : "text-[#84838B]"
-            }`}
+            className={`transform transition-all ease-in-out duration-200 text-xl ${active === "everyone"
+              ? "border-b-2 border-[#3F3849] font-bold text-[#3F3849]"
+              : "text-[#84838B] font-medium"
+              }`}
             onClick={() => setActive("everyone")}
           >
-            <p className=" text-sm font-medium leading-[normal]">Everyone</p>
+            Everyone
           </button>
         </div>
 
         <div ref={dropdownRef}>
           <button
-            className="flex justify-between w-36 rounded-md border-2 border-[#d5c3c2] border-lg px-3 py-1 md:py-2 bg-[#FFEEEB]"
+            className="flex justify-between w-36 rounded-md border-2 border-[#d5c3c2] border-lg px-3 py-1 sm:py-2 bg-[#FFEEEB]"
             onClick={showDropdown}
           >
             {selectedItem.text} <Image src={caret} alt="arrow-down" />
           </button>
 
           <div
-            className={`absolute mt-2 w-36 bg-white  rounded shadow-lg z-10 transition duration-200 ease-linear ${
-              isOpen ? "translate-y-0" : "-translate-y-3"
-            }`}
+            className={`absolute mt-2 w-36 bg-white  rounded shadow-lg z-10 transition duration-200 ease-linear ${isOpen ? "translate-y-0" : "-translate-y-3"
+              }`}
           >
             {isOpen ? (
               <>
                 {dropdownItems.map((item) => (
                   <button
                     key={item.value}
-                    className={`block px-4 py-2 text-gray w-full ${
-                      selectedItem.value === item.value
-                        ? "bg-charcoal text-white"
-                        : ""
-                    }`}
-                    onClick={() => handleItemClick(item)}
+                    className={`block px-4 py-2 text-gray w-full ${selectedItem.value === item.value
+                      ? "bg-[#3F3849] text-white"
+                      : ""
+                      }`}
+                    onClick={(e) => handleItemClick(item)}
                   >
                     {item.text}
                   </button>
@@ -256,10 +232,10 @@ const TimelineEvents = () => {
           </div>
         </div>
       </div>
-
+      {isLoading && <div className="pt-6"><LoadingSVG /></div>}
       {/* Pictures Grid Container */}
       <div className="mt-9 grid md:grid-cols-2 xl:grid-cols-3 gap-x-6 gap-y-8 ">
-        {renderCardData}
+        {evetData && renderCardData}
       </div>
     </div>
   );
