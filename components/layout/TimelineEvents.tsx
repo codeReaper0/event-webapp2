@@ -241,9 +241,9 @@ const TimelineEvents = () => {
                 {dropdownItems.map((item) => (
                   <button
                     key={item.value}
-                    className={`block px-4 py-2 text-gray w-full ${
+                    className={`block px-4 py-2 text-gray text-sm w-full ${
                       selectedItem.value === item.value
-                        ? "bg-charcoal text-white"
+                        ? "bg-primary text-white"
                         : ""
                     }`}
                     onClick={() => handleItemClick(item)}
