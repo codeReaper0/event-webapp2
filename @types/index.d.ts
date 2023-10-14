@@ -44,12 +44,21 @@ export interface EventData {
   image: string;
 }
 export interface TimelineCardProps {
+  id: string;
   bg: string;
-  imgSrc: any;
-  name: string;
+  image: string;
+  event_name: string;
+  event_end: string;
+  event_start: string;
   date: string;
   time: string;
   stadium: string;
+  updated_at: string;
+  created_at: string;
+  event_description: string;
+  location: string;
+  event_for: string;
+  event_duration: string;
 }
 
 export interface cardItem {
@@ -66,14 +75,8 @@ export interface MyPeopleProps {
   events: number;
 }
 
-type FormValues = {
-  title: string;
-  description: string;
-  location: string;
-  start_date: string;
-  group: number;
-  end_date: string;
-  start_time: string;
-  end_time: string;
-  image: string | null;
-}
+
+type AuthContextType = {
+  user: any;
+  logout: () => void;
+};

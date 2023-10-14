@@ -23,9 +23,9 @@
   background: #ffeeeb !important;
   font-weight: 600;
 }
-.rbc-event{
-  background: #FFC6BC !important;
-  border: 1px solid  #9D7AE8 !important;
+.rbc-event {
+  background: #ffc6bc !important;
+  border: 1px solid #9d7ae8 !important;
 }
 
 .MuiInputBase-adornedEnd {
@@ -44,17 +44,22 @@
   max-width: 157px;
 }
 
+  .datepicker .MuiInputAdornment-root svg {
+    color: #3F3849;
+  }
+  #btn {
+    color: black;
+    font-family: Inter;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 28px;
+  letter-spacing: 0.01em;
+
+  }
 .timepicker .MuiInputAdornment-root svg {
   color: #ffc6bc;
 }
 
-  .datepicker .MuiInputAdornment-root svg {
-    color: #3F3849;
-  }
-
-  label {
-    min-width: 114px;
-  }
 .datepicker .MuiInputAdornment-root svg {
   color: #3f3849;
 }

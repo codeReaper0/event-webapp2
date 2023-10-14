@@ -2,20 +2,12 @@ import MainLayout from "@/components/layout/mainLayout";
 import Header from "@/components/header";
 import MyPeopleCard from "@/components/myPeopleCard";
 import http from "@/http/interceptor";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CreateGroup from "@/components/createGroup";
 
 export default function People() {
   const [groups, setGroups] = useState("");
 
-  const getGroups = async () => {
-    try {
-      const res = await http.get("/groups");
-      console.log(res);
-    } catch (error: any) {
-      console.log(error);
-    }
-  };
 
   return (
     <MainLayout title="Groups">
