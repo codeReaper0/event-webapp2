@@ -16,8 +16,7 @@ const TimeLineEventCard = ({
   location,
   start_date,
   start_time,
-  title,
-  detail
+  title
 }: TimelineCardProps) => {
   const [renderBg, setRenderBg] = useState<string>('')
   const [renderBgImg, setRenderBgImg] = useState<any>()

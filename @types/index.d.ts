@@ -55,7 +55,6 @@ export interface TimelineCardProps {
   start_date: string,
   start_time: string,
   title: string,
-  detail: string;
 }
 
 export interface cardItem {
