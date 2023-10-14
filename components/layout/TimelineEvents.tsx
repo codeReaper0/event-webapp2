@@ -133,7 +133,7 @@ const TimelineEvents = () => {
   const [selectedItem, setSelectedItem] = useState<dropdownProps>(
     dropdownItems[0],
   );
-  const [active, setActive] = useState<string>("");
+  const [active, setActive] = useState<"everyone" | "friends">("friends");
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const handleItemClick = (item: dropdownProps) => {
@@ -147,16 +147,12 @@ const TimelineEvents = () => {
 
   const dropdownRef = useRef<any>(null);
 
-  useEffect(() => {
-    const handleClickOutside = (event: any) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setIsOpen(false);
-      }
-    };
-
-    fetch(`https://wetindeysup-api.onrender.com/api/events`)
+  const fetchData = (endpoint: string) => {
+    setIsLoading(true)
+    setEventData([])
+    fetch(`https://events-be-python-psi.vercel.app/api/${endpoint}`)
       .then(response => response.json())
-      .then((response: TimelineCardProps[]) => {
+      .then((response) => {
         console.log(response)
         setEventData(response)
         setIsLoading(false)
@@ -165,6 +161,16 @@ const TimelineEvents = () => {
         console.log('Fetch Error', err)
         setIsLoading(false)
       })
+  }
+
+  useEffect(() => {
+    const handleClickOutside = (event: any) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    };
+
+    fetchData('friends_events')
 
     document.addEventListener("click", handleClickOutside);
 
@@ -173,7 +179,7 @@ const TimelineEvents = () => {
     };
   }, []);
 
-  const renderCardData = evetData.map((item) => (
+  const renderCardData = evetData.length > 0 && evetData.map((item) => (
     <TimeLineEventCard key={item.id} {...(item as TimelineCardProps)} />
   ));
 
@@ -186,7 +192,10 @@ const TimelineEvents = () => {
               ? "border-b-2 border-[#3F3849] font-bold text-[#3F3849]"
               : "text-[#84838B] font-medium"
               }`}
-            onClick={() => setActive("friends")}
+            onClick={() => {
+              setActive("friends")
+              fetchData('friends_events')
+            }}
           >
             Friends
           </button>
@@ -195,7 +204,10 @@ const TimelineEvents = () => {
               ? "border-b-2 border-[#3F3849] font-bold text-[#3F3849]"
               : "text-[#84838B] font-medium"
               }`}
-            onClick={() => setActive("everyone")}
+            onClick={() => {
+              setActive("everyone")
+              fetchData('events/all')
+            }}
           >
             Everyone
           </button>
@@ -210,7 +222,7 @@ const TimelineEvents = () => {
           </button>
 
           <div
-            className={`absolute mt-2 w-36 bg-white  rounded shadow-lg z-10 transition duration-200 ease-linear ${isOpen ? "translate-y-0" : "-translate-y-3"
+            className={`absolute overflow-hidden mt-2 w-36 bg-white  rounded-md shadow-lg z-10 transition duration-200 ease-linear ${isOpen ? "translate-y-0" : "-translate-y-3"
               }`}
           >
             {isOpen ? (
@@ -218,8 +230,8 @@ const TimelineEvents = () => {
                 {dropdownItems.map((item) => (
                   <button
                     key={item.value}
-                    className={`block px-4 py-2 text-gray w-full ${selectedItem.value === item.value
-                      ? "bg-[#3F3849] text-white"
+                    className={`block px-4 py-2 text-gray w-full hover:bg-[#F0F0F0] ${selectedItem.value === item.value
+                      ? "bg-[#3F3849] hover:bg-[#3F3849] text-white"
                       : ""
                       }`}
                     onClick={(e) => handleItemClick(item)}
@@ -232,10 +244,13 @@ const TimelineEvents = () => {
           </div>
         </div>
       </div>
-      {isLoading && <div className="pt-6"><LoadingSVG /></div>}
+      {evetData.detail && <p className="mt-2 ps-2 md:ps-4 text-xl text-[#84838B]">
+        No Event found for <span className="font-semibold capitalize text-[#3F3849]">{active}</span>
+      </p>}
+      {isLoading && <div className="pt-4"><LoadingSVG /></div>}
       {/* Pictures Grid Container */}
       <div className="mt-9 grid md:grid-cols-2 xl:grid-cols-3 gap-x-6 gap-y-8 ">
-        {evetData && renderCardData}
+        {renderCardData}
       </div>
     </div>
   );

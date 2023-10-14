@@ -44,21 +44,18 @@ export interface EventData {
   updated_at: string;
 }
 export interface TimelineCardProps {
-  id: string;
-  bg: string;
-  image: string;
-  event_name: string;
-  event_end: string;
-  event_start: string;
-  date: string;
-  time: string;
-  stadium: string;
-  updated_at: string;
-  created_at: string;
-  event_description: string;
-  location: string;
-  event_for: string;
-  event_duration: string;
+  creator: string,
+  description: string,
+  end_date: string,
+  end_time: string,
+  group: number,
+  id: string,
+  image: string,
+  location: string,
+  start_date: string,
+  start_time: string,
+  title: string,
+  detail: string;
 }
 
 export interface cardItem {
