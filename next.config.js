@@ -7,7 +7,11 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: 'res.cloudinary.com'
-      }
+      },
+      {
+        protocol: "https",
+        hostname: "events-be-python-psi.vercel.app",
+      },
     ]
   },
   async rewrites() {

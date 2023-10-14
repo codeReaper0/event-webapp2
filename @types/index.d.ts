@@ -60,10 +60,21 @@ export interface cardItem {
 }
 
 export interface MyPeopleProps {
+  id: number,
   bgColor: string;
-  imgSrc: string;
+  imgSrc: any;
   name: string;
   events: number;
+}
+
+export interface Group {
+  pk: number,
+  admin: string,
+  created_at: string,
+  updated_at: string,
+  image: string,
+  group_name: string,
+  friends: number[]
 }
 
 type FormValues = {
