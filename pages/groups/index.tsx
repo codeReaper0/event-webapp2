@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 import CreateGroup from "@/components/createGroup";
 import { Group } from "@/@types";
 import TechiesImage from "assets/mypeople/people1.png";
+import SkeletonLoader from "@/components/groupSkeletonLoader";
 
 export default function People() {
   const [groups, setGroups] = useState<Group[]>([]);
@@ -63,7 +64,11 @@ export default function People() {
       <div className="p-4 lg:p-0">
         <CreateGroup />
         {isLoading ? (
-          <p className="text-xl p-4 text-center">Loading...</p>
+          <div className="bg-secondary grid md:grid-cols-2 lg:grid-cols-3 gap-6 p-4 md:p-6 rounded-2xl">
+            <SkeletonLoader />
+            <SkeletonLoader />
+            <SkeletonLoader />
+        </div>
         ) : (
           groups.length > 0 ? (
             <div className="bg-secondary grid md:grid-cols-2 lg:grid-cols-3 gap-6 p-4 md:p-6 rounded-2xl">
