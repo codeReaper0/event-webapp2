@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
 import http from "@/http/interceptor";
+import { AuthProvider } from "@/provider/AuthProvider";
 
 export const metadata: Metadata = {
   title: "Events App",
@@ -35,5 +36,9 @@ export default function App({ Component, pageProps }: AppProps) {
   //     };
   //   }, []);
 
-  return <Component {...pageProps} />;
+  return (
+    <AuthProvider>
+      <Component {...pageProps} />
+    </AuthProvider>
+  );
 }
