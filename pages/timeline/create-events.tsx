@@ -12,6 +12,7 @@ import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { DesktopTimePicker } from "@mui/x-date-pickers/DesktopTimePicker";
 import dayjs from "dayjs";
 import Link from "next/link";
+import MainLayout from "@/components/layout/mainLayout";
 
 const today = dayjs().add(0, "day");
 
@@ -20,10 +21,7 @@ export default function CreateEvents(props: {
   components: any;
 }) {
   return (
-    <div className="w-full lg:h-full xsm:h-full lg:bg-brand-gray-100 xsm:bg-primary shrink-0 flex lg:flex-row xsm:flex-col">
-      <div className="lg:flex md:hidden sm:hidden xsm:hidden">
-        <Sidebar />
-      </div>
+    <MainLayout title="Create Event">
       <div className="h-full lg:pl-16 lg:pt-14 xsm:p-8 lg:rounded-none xsm:rounded-3xl lg:m-0 xsm:m-4 xsm:bg-white lg:bg-brand-gray-100">
         <div className="flex items-center gap-6">
           <Link href="/timeline">
@@ -179,6 +177,6 @@ export default function CreateEvents(props: {
           Create Event
         </button>
       </div>
-    </div>
+    </MainLayout>
   );
 }
