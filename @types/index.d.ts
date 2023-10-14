@@ -69,14 +69,36 @@ export interface cardItem {
 }
 
 export interface MyPeopleProps {
+  id: number,
   bgColor: string;
-  imgSrc: string;
+  imgSrc: any;
   name: string;
   events: number;
 }
-
 
 type AuthContextType = {
   user: any;
   logout: () => void;
 };
+
+export interface Group {
+  pk: number,
+  admin: string,
+  created_at: string,
+  updated_at: string,
+  image: string,
+  group_name: string,
+  friends: number[]
+}
+
+export type FormValues = {
+  title: string;
+  description: string;
+  location: string;
+  start_date: string;
+  group: number;
+  end_date: string;
+  start_time: string;
+  end_time: string;
+  image: string | null;
+}

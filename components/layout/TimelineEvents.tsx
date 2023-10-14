@@ -107,6 +107,10 @@ interface dropdownProps {
   value: string;
 }
 
+interface FormatedTimeLineProps extends TimelineCardProps {
+  type: string;
+}
+
 const dropdownItems: dropdownProps[] = [
   {
     text: "All",
@@ -134,7 +138,7 @@ const TimelineEvents = () => {
   const [selectedItem, setSelectedItem] = useState<dropdownProps>(
     dropdownItems[0],
   );
-  const [active, setActive] = useState<string>("");
+  const [active, setActive] = useState<string>("friends");
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const handleItemClick = (item: dropdownProps) => {
@@ -147,6 +151,26 @@ const TimelineEvents = () => {
   };
 
   const dropdownRef = useRef<any>(null);
+  const formatEventData = (data: any) => {
+    return data.map((item: any, idx: any) => {
+      return { ...item, type: idx % 2 === 1 ? "friends" : "everyone" };
+    });
+  };
+
+  // const handlFilteredData = (type: string): any => {
+  //   switch (type) {
+  //     case "friends":
+  //       setEventData(evetData.filter((item: any) => item?.type === "friends"));
+  //       setActive("friends");
+  //       break;
+  //     case "everyone":
+  //       setEventData(evetData.filter((item: any) => item?.type === "everyone"));
+  //       setActive("everyone");
+  //       break;
+  //     default:
+  //       evetData;
+  //   }
+  // };
 
   useEffect(() => {
     const handleClickOutside = (event: any) => {
@@ -156,18 +180,15 @@ const TimelineEvents = () => {
     };
 
     fetch(`https://wetindeysup-api.onrender.com/api/events`)
-
       .then((response) => response.json())
       .then((response: TimelineCardProps[]) => {
-        console.log(response);
-        setEventData(response);
+        setEventData(formatEventData(response));
+        console.log(evetData.filter((item: any) => item.type === "friends"));
         setIsLoading(false);
       })
       .catch((err) => {
-        console.log("Fetch Error", err);
         setIsLoading(false);
       });
-
 
     document.addEventListener("click", handleClickOutside);
 
@@ -185,25 +206,21 @@ const TimelineEvents = () => {
       <div className="flex flex-col sm:flex-row justify-between w-full relative">
         <div className="flex p-2 md:p-4 justify-start md:justify-center mb-3 md:mb-0 items-center gap-5 sm:gap-10 ">
           <button
-
             className={`transform transition-all ease-in-out duration-200 text-xl ${
               active === "friends"
                 ? "border-b-2 border-[#3F3849] font-bold text-[#3F3849]"
                 : "text-[#84838B] font-medium"
             }`}
-
             onClick={() => setActive("friends")}
           >
             Friends
           </button>
           <button
-
             className={`transform transition-all ease-in-out duration-200 text-xl ${
               active === "everyone"
                 ? "border-b-2 border-[#3F3849] font-bold text-[#3F3849]"
                 : "text-[#84838B] font-medium"
             }`}
-
             onClick={() => setActive("everyone")}
           >
             Everyone
@@ -219,22 +236,21 @@ const TimelineEvents = () => {
           </button>
 
           <div
-            className={`absolute mt-2 w-36 bg-white  rounded shadow-lg z-10 transition duration-200 ease-linear ${isOpen ? "translate-y-0" : "-translate-y-3"
-              }`}
+            className={`absolute mt-2 w-36 bg-white  rounded shadow-lg z-10 transition duration-200 ease-linear ${
+              isOpen ? "translate-y-0" : "-translate-y-3"
+            }`}
           >
             {isOpen ? (
               <>
                 {dropdownItems.map((item) => (
                   <button
                     key={item.value}
-
                     className={`block px-4 py-2 text-gray text-sm w-full ${
                       selectedItem.value === item.value
                         ? "bg-primary text-white"
                         : ""
                     }`}
                     onClick={() => handleItemClick(item)}
-
                   >
                     {item.text}
                   </button>
