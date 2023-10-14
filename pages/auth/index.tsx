@@ -147,7 +147,7 @@ export default function Auth() {
                   />
                   Continue with Twitter
                 </button>
-                <button onClick={handleLogout}>logout</button>
+
                 {/* </Link> */}
               </div>
               <p className="mt-6 text-[1rem] text-gray-600">
