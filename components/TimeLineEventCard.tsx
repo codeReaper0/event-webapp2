@@ -56,6 +56,7 @@ const TimeLineEventCard = ({
           <h6 className="mt-3">{convertDate(end_date)}</h6>
           <p className="mt-3 opacity-70">{getDay(end_date)}, {start_time} - {end_time}</p>
           <p className="mt-3 font-normal capitalize">{location || 'Unlnown Location'}</p>
+
         </span>
         <button className="z-10 active:scale-[0.95]">
           <NextBtnSVG />

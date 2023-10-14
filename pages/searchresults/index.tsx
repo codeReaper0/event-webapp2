@@ -1,14 +1,32 @@
-import react from "react";
 import Image from "next/image";
 import MainLayout from "@/components/layout/mainLayout";
 import SearchBar from "@/components/searchBar";
 import { SearchIcon } from "@/public/assets/icon/searchIcon";
-import Header from "@/components/header";
 import { Button } from "@mui/material";
-
+import {useSearchParams} from "next/navigation";
 import Rectangle30 from "../../public/hng.png";
+import { useState, useEffect } from "react";
 
 export default function Index() {
+    const [data, setData] = useState<any>({})
+    const searchParams = useSearchParams();
+    const keyword = searchParams.get("keyword");
+    
+    useEffect(() => 
+    {
+        fetchData()
+    }, 
+[])
+    const fetchData = () => fetch(`https://wetindeysup-api.onrender.com/api/events/search?keyword=${keyword}`
+       
+    )
+    .then(res => res.json())
+    .then(res => {
+      console.log(res.data[0])
+      setData(res.data[0])
+    })
+    .catch(error => console.log(error))
+   console.log(typeof(data.event_name))
   const ArrowDownSVG: React.FC = () => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -91,60 +109,98 @@ export default function Index() {
       </defs>
     </svg>
   );
-
-  interface TimelinePitchItem {
-    bg: string;
-    imgSrc: any;
-    name: string;
-    date: string;
-    time: string;
-    stadium: string;
-  }
-
-  const pitchArray: TimelinePitchItem[] = [
-    {
-      bg: "bg-[#FFE0C4]",
-      imgSrc: Rectangle30,
-      name: "HNG Finalist Event",
-      date: "29/11/2023",
-      time: "Sunday, 16:00-18:00",
-      stadium: "Monika Primary School",
-    },
-  ];
-  const pitchData = pitchArray.map((item, index) => (
-    <div key={index} className={`py-6 px-4 rounded-2xl ${item.bg}`}>
-      <Image src={item.imgSrc} className="w-full" alt="" />
-      <div className="relative mt-4 flex justify-between gap-3">
-        <span className="text-black font-sans font-medium text-base">
-          <h2 className="font-sans text-xl font-bold text-[#3F3849]">
-            {item.name}
-          </h2>
-          <h6 className="mt-3">{item.date}</h6>
-          <p className="mt-3 opacity-70">{item.time}</p>
-          <p className="mt-3 font-normal">{item.stadium}</p>
-        </span>
-        <button className="z-10 active:scale-[0.95]">
-          <NextBtnSVG />
-        </button>
-        <div className="absolute top-[-25px] right-[-16px]">
-          <GroupRectangleSVG />
-        </div>
-      </div>
-    </div>
-  ));
-
+//   const lower:string = data.event_name
+//   console.log(lower)
+//   const low:string = lower.toLowerCase()
+//   console.log(low)
+  const Render = () => {
+    if(data && data.event_name) {
+        interface TimelinePitchItem {
+    
+            bg: string;
+            imgSrc: any;
+            name: string;
+            date: string;
+            time: string;
+            stadium: string;
+          }
+          const pitchArray: TimelinePitchItem[] = [
+            {
+              
+              bg: "bg-[#FFE0C4]",
+              imgSrc: Rectangle30,
+              name: `${data.event_name}`,
+              date: `${data.event_start}`,
+              time: `${data.event_end}`,
+              stadium: `${data.location}`,
+            },
+          ];
+          const pitchData = pitchArray.map((item, index) => (
+            <div key={index} className={`py-6 px-4 rounded-2xl ${item.bg}`}>
+              <Image src={item.imgSrc} className="w-full" alt="" />
+              <div className="relative mt-4 flex justify-between gap-3">
+                <span className="text-black font-sans font-medium text-base">
+                  <h2 className="font-sans text-xl font-bold text-[#3F3849]">
+                    {item.name}
+                  </h2>
+                  <h6 className="mt-3">{item.date}</h6>
+                  <p className="mt-3 opacity-70">{item.time}</p>
+                  <p className="mt-3 font-normal">{item.stadium}</p>
+                </span>
+                <button className="z-10 active:scale-[0.95]">
+                  <NextBtnSVG />
+                </button>
+                <div className="absolute top-[-25px] right-[-16px]">
+                  <GroupRectangleSVG />
+                </div>
+              </div>
+            </div>
+          ));
+        return (
+            <div className="mt-[19px] grid lg:grid-cols-2 xl:grid-cols-3 gap-x-6 gap-y-8 "> 
+                {pitchData} 
+            </div>
+        )
+      } else {
+        return (
+            <div className="flex flex-col items-center gap-3">
+                <Image
+                alt="noresult"
+                src="/assets/images/noresult.png"
+                width={240}
+                height={240}
+                className="text-center"
+                />
+                <h1 className="text-black-900 font-bold font-16 text-2xl">
+                Oops, something is missing
+                </h1>
+                <p className="items-center text-gray-500">
+                We couldn&apos;t find any results for your search. Please check
+                </p>
+                <p className="items-center text-gray-500">your entry and try again.</p>
+                <Button
+                className="pt-4 pb-4 pl-4 pr-4 bg-pink-400  mt-8  rounded-2xl"
+                href="https://zuri-events-app.vercel.app/timeline"
+                >
+                <Image
+                    alt="vector"
+                    src="/assets/images/Vector.png"
+                    width={20}
+                    height={20}
+                    className="mr-3"
+                />
+                <span id="btn">Go back to the timeline</span>
+                </Button>
+            </div> 
+        )
+      }
+  
+  };
   return (
     <MainLayout>
       <header className="w-full flex justify-between h-max sticky top-0 bg-brand-gray-100 z-20 p-4 lg:py-10">
         {/* Title section */}
         <div className="flex justify-normal">
-          <Image
-            alt="back"
-            src="/assets/images/back.png"
-            width={40}
-            height={1}
-            className="mr-3"
-          />
           <div className=" md:block">
             <h2 className="text-xl xl:text-2xl font-bold mb-4">
               Search Results
@@ -152,56 +208,14 @@ export default function Index() {
             <p className="text-sm xl:text-base font-medium">
               <span className=" text-brand-gray-400">showing results for</span>{" "}
               <span className="text-brand-black-400 font-bold">
-                theshinobi concert
+                {keyword}
               </span>
             </p>
           </div>
         </div>
-
-        {/* Search */}
-        <div className="w-full md:w-60 xl:w-80 h-14 relative font-bolder">
-          <input
-            value="theshinobi concert"
-            className="h-full w-full border border-black/40 rounded-2xl p-2 pl-16 text-primary placeholder:text-brand-gray-600 focus:outline-none bg-transparent"
-          />
-          <div className="absolute left-5 top-5">
-            <SearchIcon />
-          </div>
-        </div>
+        <SearchBar  />
       </header>
-
-      <div className="flex flex-col items-center gap-3">
-        <Image
-          alt="noresult"
-          src="/assets/images/noresult.png"
-          width={240}
-          height={240}
-          className="text-center"
-        />
-        <h1 className="text-black-900 font-bold font-16 text-2xl">
-          Oops, something is missing
-        </h1>
-        <p className="items-center text-gray-500">
-          We couldn&apos;t find any results for your search. Please check
-        </p>
-        <p className="items-center text-gray-500">your entry and try again.</p>
-        <Button
-          className="pt-4 pb-4 pl-4 pr-4 bg-pink-400  mt-8  rounded-2xl"
-          href="https://zuri-events-app.vercel.app/timeline"
-        >
-          <Image
-            alt="vector"
-            src="/assets/images/Vector.png"
-            width={20}
-            height={20}
-            className="mr-3"
-          />
-          <span id="btn">Go back to the timeline</span>
-        </Button>
-      </div>
-      {/* <div className="mt-[19px] grid lg:grid-cols-2 xl:grid-cols-3 gap-x-6 gap-y-8 "> */}
-      {/* {pitchData} */}
-      {/* </div> */}
+      <Render />  
     </MainLayout>
   );
 }

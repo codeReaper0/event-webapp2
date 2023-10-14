@@ -21,14 +21,16 @@ import { useRouter } from 'next/router';
 import { FormValues } from "@/@types";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import MainLayout from "@/components/layout/mainLayout";
 
-const today = dayjs().add(0, 'day');
+const today = dayjs().add(0, "day");
 
+export default function CreateEvents(props: {
+  [x: string]: any;
+  components: any;
+}) {
 
-
-export default function CreateEvents(props: { [x: string]: any; components: any; }) {
-
-    const { register, handleSubmit, formState: { errors } } = useForm<FormValues>();
+  const { register, handleSubmit, formState: { errors } } = useForm<FormValues>();
     const [image, setImage] = useState<string | null>(null);
     const [imageName, setImageName] = useState<string | null>(null);
     const [startDate, setStartDate] = useState<dayjs.Dayjs | null>(null);
@@ -131,13 +133,11 @@ export default function CreateEvents(props: { [x: string]: any; components: any;
         input.value = "";
         }
     };
-    
-    return (
-            <div className='w-full lg:h-full xsm:h-full lg:bg-brand-gray-100 xsm:bg-primary shrink-0 flex lg:flex-row xsm:flex-col'>
-                <div className="lg:flex md:hidden sm:hidden xsm:hidden">
-                    <Sidebar />
-                </div>
-                <div className='h-full lg:pl-16 lg:pt-14 xsm:p-8 lg:rounded-none xsm:rounded-3xl lg:m-0 xsm:m-4 xsm:bg-white lg:bg-brand-gray-100'>
+
+
+  return (
+    <MainLayout title="Create Event">
+        <div className='h-full  lg:pt-14 xsm:p-8 lg:rounded-none xsm:rounded-3xl lg:m-0 xsm:m-4 xsm:bg-white lg:bg-brand-gray-100'>
                     <div className='flex items-center gap-6'>
                         <ToastContainer
                             position="top-right"
@@ -164,7 +164,7 @@ export default function CreateEvents(props: { [x: string]: any; components: any;
                     </div>
                     <form onSubmit={handleSubmit(onSubmit)} className="mt-8 inline-flex flex-col items-start gap-8 md:w-full xsm:w-full lg:w-[591px] lg:ml-16">
                         <div className='flex lg:flex-row xsm:flex-col items-start gap-6 w-full'>
-                            <label className='text-lg font-semibold'>Event Name:</label>
+                            <label id="label" className='text-lg font-semibold'>Event Name:</label>
                             <div className="flex flex-col gap-1 w-full">
                                 <input 
                                     type='text' 
@@ -176,7 +176,7 @@ export default function CreateEvents(props: { [x: string]: any; components: any;
                             </div>
                         </div>
                         <div className='flex lg:flex-row xsm:flex-col items-start gap-6 w-full'>
-                            <label className='text-lg font-semibold'>Event Description:</label>
+                            <label id="label" className='text-lg font-semibold'>Event Description:</label>
                             <div className="flex flex-col gap-1 w-full">
                                 <textarea 
                                     placeholder='Enter the event description' 
@@ -187,7 +187,7 @@ export default function CreateEvents(props: { [x: string]: any; components: any;
                             </div>
                         </div>
                         <div className="flex lg:flex-row xsm:flex-col items-start gap-6 w-full">
-                            <label className='text-lg font-semibold'>Event <br className='hidden lg::block'/> Image:</label>
+                            <label id="label" className='text-lg font-semibold'>Event <br className='hidden lg:block'/> Image:</label>
                             <div className="flex flex-grow px-2 py-4 items-center gap-2 rounded-2xl border-2 border-black bg-brand-gray-100">
                                 <div className="text-center flex items-center ">
                                     {image ? (
@@ -226,7 +226,7 @@ export default function CreateEvents(props: { [x: string]: any; components: any;
                             </div>
                         </div>
                         <div className='flex lg:flex-row xsm:flex-col items-start lg:items-center gap-6 w-full'>
-                            <label className='text-lg font-semibold'>Location:</label>
+                            <label id="label" className='text-lg font-semibold'>Location:</label>
                             <div className="flex flex-col gap-1 w-full">
                                 <div className='flex flex-grow py-2 px-4 items-center gap-2 rounded-2xl border-2 border-black bg-brand-gray-100'>
                                     <LocationIconLg />
@@ -242,7 +242,7 @@ export default function CreateEvents(props: { [x: string]: any; components: any;
                             </div>
                         </div>
                         <div className='flex lg:flex-row xsm:flex-col items-start lg::items-center gap-6 w-full'>
-                            <label className='text-lg font-semibold'>Event <br className='hidden lg:block'/> Group:</label>
+                            <label id="label" className='text-lg font-semibold'>Event <br className='hidden lg:block'/> Group:</label>
                             <div className="flex flex-col gap-1 w-full">
                                 <div className='flex flex-grow py-2 px-4 items-center gap-2 rounded-2xl border-2 border-black bg-brand-gray-100'>
                                     <GroupIconLg />
@@ -261,7 +261,7 @@ export default function CreateEvents(props: { [x: string]: any; components: any;
                             </div>
                         </div>
                         <div className='flex lg:flex-row xsm:flex-col items-start gap-6'>
-                            <label className='text-lg font-semibold inline-flex gap-1'><span className='xsm:hidden lg:inline-flex'>Event</span> Starts:</label>
+                            <label id="label" className='text-lg font-semibold inline-flex gap-1'><span className='xsm:hidden lg:inline-flex'>Event</span> Starts:</label>
                             <div className='flex items-center gap-6'>
                                 <div className='flex flex-col justify-center items-start gap-1'>
                                     <label htmlFor="date" className='font-medium text-base text-black opacity-70'>Date</label>
@@ -291,7 +291,7 @@ export default function CreateEvents(props: { [x: string]: any; components: any;
                             </div>
                         </div>
                         <div className='flex lg:flex-row xsm:flex-col items-start gap-6'>
-                            <label className='text-lg font-semibold inline-flex gap-1'><span className='xsm:hidden lg:inline-flex'>Event </span> Ends:</label>
+                            <label id="label" className='text-lg font-semibold inline-flex gap-1'><span className='xsm:hidden lg:inline-flex'>Event </span> Ends:</label>
                             <div className='flex items-center gap-6'>
                                 <div className='flex flex-col justify-center items-start gap-1'>
                                     <label htmlFor="date" className='font-medium text-base text-black opacity-70'>Date</label>
@@ -350,6 +350,6 @@ export default function CreateEvents(props: { [x: string]: any; components: any;
                         Create Event
                     </button>
                 </div> */}
-            </div>
-    )
+    </MainLayout>
+  );
 }

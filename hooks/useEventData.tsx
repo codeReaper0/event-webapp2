@@ -7,24 +7,35 @@ export function useEventData() {
   const [loading, setLoading] = useState(false);
   const baseURL = process.env.NEXT_PUBLIC_API_URL;
 
-  const fetchData = (endpoint: string) =>
-    fetch(`${baseURL}/${endpoint}`)
-      .then((response) => response.json())
+  const fetchData = (endpoint: string) => {
+    fetch(`${baseURL}${endpoint}`, {
+      method: "GET",
+      headers: {
+        "content-type": "application/json",
+      },
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
       .then((response: EventData[]) => {
         const formattedData = response.map((event) => ({
           ...event,
-          event_start: new Date(event.event_start),
-          event_end: new Date(event.event_end),
+          start_date: new Date(`${event.start_date}T${event.start_time}`),
+          end_date: new Date(`${event.end_date}T${event.end_time}`),
         }));
         setEventData(formattedData);
       })
       .catch((err) => {
-        setError(err);
+        setError(err.message);
       });
+  };
 
   useEffect(() => {
     setLoading(true);
-    fetchData("/events");
+    fetchData("/events/all");
     setLoading(false);
   }, []);
 
