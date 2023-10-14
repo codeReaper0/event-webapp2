@@ -5,7 +5,7 @@ import NavLinks from "./navLinks";
 import Logo from "assets/wetindeysup.png";
 import Link from "next/link";
 import { auth } from "@/config/firebase";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 export default function Sidebar() {
   const router = useRouter();
