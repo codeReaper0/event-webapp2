@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import Image from "next/image";
 import Artboard from "@/public/assets/auth/Artboard.png";
 import Logo from "@/public/assets/auth/logo.svg";
@@ -10,26 +10,47 @@ import { useRouter } from "next/router";
 import { ClipLoader } from "react-spinners";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { signInWithPopup } from "firebase/auth";
+import { auth, googleProvider } from "@/config/firebase";
+import { AuthContextType } from "@/@types";
+import { AuthContext } from "@/provider/AuthProvider";
 
 export default function Auth() {
   const router = useRouter();
+  const authContext = useContext<AuthContextType | null>(AuthContext);
+  const user = authContext ? authContext.user : null;
   const [isLoading, setIsLoading] = useState(false);
 
-  const signInWithGoogle = async () => {
-    setIsLoading(true);
-    try {
-      const response = await http.post("/auth/google/login/");
+  useEffect(() => {
+    console.log(user);
+  }, []);
+  // const signInWithGoogle = async () => {
+  //   setIsLoading(true);
+  //   try {
+  //     const response = await http.post("/auth/google/login/");
 
-      if (response.status === 200) {
-        router.push(response.data.auth_url);
-      } else {
-        toast.error(`Authentication failed. Try Again`);
-      }
-    } catch (error: any) {
-      toast.error(`Authentication failed: ${error.message}`);
-    } finally {
-      setIsLoading(false);
+  //     if (response.status === 200) {
+  //       router.push(response.data.auth_url);
+  //     } else {
+  //       toast.error(`Authentication failed. Try Again`);
+  //     }
+  //   } catch (error: any) {
+  //     toast.error(`Authentication failed: ${error.message}`);
+  //   } finally {
+  //     setIsLoading(false);
+  //   }
+  // };
+  const signInWithGoogle = async () => {
+    try {
+      const result = await signInWithPopup(auth, googleProvider);
+      console.log(result.user);
+      router.push("/timeline");
+    } catch (error) {
+      console.log(error);
     }
+  };
+  const handleLogout = () => {
+    auth.signOut();
   };
 
   const signInWithTwitter = () => {
@@ -126,6 +147,7 @@ export default function Auth() {
                   />
                   Continue with Twitter
                 </button>
+
                 {/* </Link> */}
               </div>
               <p className="mt-6 text-[1rem] text-gray-600">

@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import Avatar from "assets/images/avatar.png";
 import { SearchIcon } from "@/public/assets/icon/searchIcon";
 import Image from "next/image";
 import SearchBar from "@/components/searchBar";
-import { HeaderProps } from "@/@types";
+import { AuthContextType, HeaderProps } from "@/@types";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { AuthContext } from "@/provider/AuthProvider";
 
 export default function Header({ title, info }: HeaderProps) {
   return (
@@ -15,8 +17,7 @@ export default function Header({ title, info }: HeaderProps) {
       </div>
 
       {/* Search */}
-      
-      
+
       <SearchBar />
       {/* <div className="w-full md:w-60 xl:w-[352px] h-[40px] md:h-[52px] relative">
         <input
@@ -27,8 +28,8 @@ export default function Header({ title, info }: HeaderProps) {
           <SearchIcon />
         </div>
       </div>  */}
-    
-        {/* <SearchBar /> */}
+
+      {/* <SearchBar /> */}
 
       {/* Profile */}
 

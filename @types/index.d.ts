@@ -76,6 +76,11 @@ export interface MyPeopleProps {
   events: number;
 }
 
+type AuthContextType = {
+  user: any;
+  logout: () => void;
+};
+
 export interface Group {
   pk: number,
   admin: string,
