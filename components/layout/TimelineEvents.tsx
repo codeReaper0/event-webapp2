@@ -113,22 +113,24 @@ const dropdownItems: dropdownProps[] = [
     value: "all",
   },
   {
-    text: "This month",
-    value: "this-month",
+    text: "This Week",
+    value: "this-week",
   },
 
   {
-    text: "Last month",
-    value: "last-month",
+    text: "Last Week",
+    value: "last-week",
   },
   {
-    text: "Last year",
-    value: "last-year",
+    text: "Last Month",
+    value: "last-month",
   },
 ];
 
 const TimelineEvents = () => {
-  const [evetData, setEventData] = useState<TimelineCardProps[]>([])
+  const [eventData, setEventData] = useState<TimelineCardProps[]>([])
+  const [filteredEvent, setFilteredEvent] = useState<TimelineCardProps[]>([])
+
   const [isLoading, setIsLoading] = useState<boolean>(true)
   const [selectedItem, setSelectedItem] = useState<dropdownProps>(
     dropdownItems[0],
@@ -136,8 +138,50 @@ const TimelineEvents = () => {
   const [active, setActive] = useState<"everyone" | "friends">("friends");
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
+  const filterEvents = (filterKeyword: string) => {
+    const currentDate = new Date();
+    switch (filterKeyword) {
+      case 'this-week':
+        const thisWeek = currentDate.getDate() - currentDate.getDay();
+        const filteredThisWeek: any = eventData.length > 0 && eventData.filter(event => {
+          const eventDate = new Date(event.end_date);
+          return eventDate.getDate() >= thisWeek && eventDate.getMonth() === currentDate.getMonth();
+        });
+        console.log("This Week", filteredThisWeek)
+        setFilteredEvent(filteredThisWeek);
+        break;
+      case 'last-week':
+        const lastWeek = currentDate.getDate() - currentDate.getDay();
+        const filteredLastWeek: any = eventData.length > 0 && eventData.filter(event => {
+          const eventDate = new Date(event.end_date);
+          return eventDate.getDate() < lastWeek && eventDate.getDate() < currentDate.getDate();
+        });
+        console.log("Last Week", filteredLastWeek)
+        setFilteredEvent(filteredLastWeek);
+        break;
+      case 'last-month':
+        const lastMonth = currentDate.getMonth() - 1;
+        const filteredLastMonth: any = eventData.length > 0 && eventData.filter(event => {
+          const eventDate = new Date(event.end_date);
+          return eventDate.getMonth() === lastMonth;
+        });
+        console.log("Last months", filteredLastMonth)
+        setFilteredEvent(filteredLastMonth);
+        break;
+      case 'all':
+        console.log("All", eventData)
+        setFilteredEvent(eventData);
+        break;
+      default:
+        console.log("Default", eventData)
+        setFilteredEvent(eventData);
+    }
+  };
+
   const handleItemClick = (item: dropdownProps) => {
     setSelectedItem(item);
+    filterEvents(item.value)
+    // console.log(item.value)
     setIsOpen(false);
   };
 
@@ -153,8 +197,9 @@ const TimelineEvents = () => {
     fetch(`https://events-be-python-psi.vercel.app/api/${endpoint}`)
       .then(response => response.json())
       .then((response) => {
-        console.log(response)
+        // console.log(response)
         setEventData(response)
+        setFilteredEvent(response)
         setIsLoading(false)
       })
       .catch(err => {
@@ -179,7 +224,7 @@ const TimelineEvents = () => {
     };
   }, []);
 
-  const renderCardData = evetData.length > 0 && evetData.map((item) => (
+  const renderCardData = filteredEvent.length > 0 && filteredEvent.map((item) => (
     <TimeLineEventCard key={item.id} {...(item as TimelineCardProps)} />
   ));
 
@@ -230,9 +275,9 @@ const TimelineEvents = () => {
                 {dropdownItems.map((item) => (
                   <button
                     key={item.value}
-                    className={`block px-4 py-2 text-gray w-full hover:bg-[#F0F0F0] ${selectedItem.value === item.value
+                    className={`block px-4 py-2 text-gray w-full ${selectedItem.value === item.value
                       ? "bg-[#3F3849] hover:bg-[#3F3849] text-white"
-                      : ""
+                      : "hover:bg-slate-100"
                       }`}
                     onClick={(e) => handleItemClick(item)}
                   >
@@ -244,7 +289,7 @@ const TimelineEvents = () => {
           </div>
         </div>
       </div>
-      {evetData.detail && <p className="mt-2 ps-2 md:ps-4 text-xl text-[#84838B]">
+      {eventData.detail && <p className="mt-2 ps-2 md:ps-4 text-xl text-[#84838B]">
         No Event found for <span className="font-semibold capitalize text-[#3F3849]">{active}</span>
       </p>}
       {isLoading && <div className="pt-4"><LoadingSVG /></div>}
