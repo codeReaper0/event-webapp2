@@ -7,7 +7,6 @@ export interface MainLayoutProps {
 export interface HeaderProps {
   title: string;
   info: string;
-  show?: boolean;
 }
 
 export interface EventProps {
@@ -32,24 +31,34 @@ export interface UserProfs {
   profilePhoto: string;
 }
 export interface EventData {
-  created_at: string;
-  created_by: string;
-  event_description: string;
-  event_end: Date;
-  event_name: string;
-  event_start: Date;
-  id: number;
-  image?: string;
+  id: string;
+  creator: string;
+  title: string;
+  description: string;
   location: string;
-  updated_at: string;
+  start_date: Date;
+  group: string;
+  end_date: Date;
+  start_time: string;
+  end_time: string;
+  image: string;
 }
 export interface TimelineCardProps {
+  id: string;
   bg: string;
-  imgSrc: any;
-  name: string;
+  image: string;
+  event_name: string;
+  event_end: string;
+  event_start: string;
   date: string;
   time: string;
   stadium: string;
+  updated_at: string;
+  created_at: string;
+  event_description: string;
+  location: string;
+  event_for: string;
+  event_duration: string;
 }
 
 export interface cardItem {
@@ -77,7 +86,7 @@ export interface Group {
   friends: number[]
 }
 
-type FormValues = {
+export type FormValues = {
   title: string;
   description: string;
   location: string;

@@ -2,7 +2,7 @@ import MainLayout from "@/components/layout/mainLayout";
 import Header from "@/components/header";
 import MyPeopleCard from "@/components/myPeopleCard";
 import http from "@/http/interceptor";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import CreateGroup from "@/components/createGroup";
 import { Group } from "@/@types";
 import TechiesImage from "assets/mypeople/people1.png";

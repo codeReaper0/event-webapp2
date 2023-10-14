@@ -7,7 +7,7 @@ import Link from "next/link";
 
 export default function Sidebar() {
   return (
-    <aside className="w-[250px] bg-primary h-full hidden lg:flex lg:flex-col justify-between pb-8 rounded-r-3xl">
+    <aside className="min-w-[250px] w-[250px] bg-primary h-full hidden lg:flex lg:flex-col justify-between pb-8 rounded-r-3xl">
       <div className="w-full">
         {/* Icon */}
         <div className="flex items-center justify-center gap-2 my-6">
