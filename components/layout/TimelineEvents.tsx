@@ -193,6 +193,7 @@ const TimelineEvents = () => {
 
   const fetchData = (endpoint: string) => {
     setIsLoading(true)
+    setSelectedItem(dropdownItems[0])
     setEventData([])
     fetch(`https://events-be-python-psi.vercel.app/api/${endpoint}`)
       .then(response => response.json())
