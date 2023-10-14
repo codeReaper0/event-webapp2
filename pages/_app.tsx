@@ -13,26 +13,26 @@ export const metadata: Metadata = {
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
 
-  useEffect(() => {
-    const handleRouteChange = async (url: string) => {
-      const response = await http.get("/profile/");
-      console.log(response);
-      const { message } = response.data;
-      if (message !== "User login successful" && (url !== "/" || "/auth")) {
-        router.replace("/auth");
-      } else if (
-        message === "User login successful" &&
-        (url === "/" || "/auth")
-      ) {
-        router.replace("/timeline");
-      }
-    };
+  //   useEffect(() => {
+  //     const handleRouteChange = async (url: string) => {
+  //       const response = await http.get("/profile/");
+  //       console.log(response);
+  //       const { message } = response.data;
+  //       if (message !== "User login successful" && (url !== "/" || "/auth")) {
+  //         router.replace("/auth");
+  //       } else if (
+  //         message === "User login successful" &&
+  //         (url === "/" || "/auth")
+  //       ) {
+  //         router.replace("/timeline");
+  //       }
+  //     };
 
-    router.events.on("routeChangeStart", handleRouteChange);
+  //     router.events.on("routeChangeStart", handleRouteChange);
 
-    return () => {
-      router.events.off("routeChangeStart", handleRouteChange);
-    };
-  }, []);
+  //     return () => {
+  //       router.events.off("routeChangeStart", handleRouteChange);
+  //     };
+  //   }, []);
   return <Component {...pageProps} />;
 }
