@@ -181,7 +181,6 @@ const TimelineEvents = () => {
   const handleItemClick = (item: dropdownProps) => {
     setSelectedItem(item);
     filterEvents(item.value)
-    // console.log(item.value)
     setIsOpen(false);
   };
 
@@ -225,9 +224,11 @@ const TimelineEvents = () => {
     };
   }, []);
 
-  const renderCardData = filteredEvent.length > 0 && filteredEvent.map((item) => (
+  const renderCardData = filteredEvent.length > 0 ? filteredEvent.map((item) => (
     <TimeLineEventCard key={item.id} {...(item as TimelineCardProps)} />
-  ));
+  )) : <p className="mt-[-30px] ps-2 md:ps-4 text-xl text-[#84838B]">
+    No Event found for <span className="font-semibold capitalize text-[#3F3849]">{active}</span>
+  </p>
 
   return (
     <div className="mx-auto mt-8 p-2 sm:p-6 bg-[#F0F0F0] rounded-2xl">
@@ -290,9 +291,6 @@ const TimelineEvents = () => {
           </div>
         </div>
       </div>
-      {eventData.detail && <p className="mt-2 ps-2 md:ps-4 text-xl text-[#84838B]">
-        No Event found for <span className="font-semibold capitalize text-[#3F3849]">{active}</span>
-      </p>}
       {isLoading && <div className="pt-4"><LoadingSVG /></div>}
       {/* Pictures Grid Container */}
       <div className="mt-9 grid md:grid-cols-2 xl:grid-cols-3 gap-x-6 gap-y-8 ">
