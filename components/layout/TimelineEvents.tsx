@@ -107,6 +107,10 @@ interface dropdownProps {
   value: string;
 }
 
+interface FormatedTimeLineProps extends TimelineCardProps {
+  type: string;
+}
+
 const dropdownItems: dropdownProps[] = [
   {
     text: "All",
@@ -136,6 +140,7 @@ const TimelineEvents = () => {
     dropdownItems[0],
   );
   const [active, setActive] = useState<"everyone" | "friends">("friends");
+
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const filterEvents = (filterKeyword: string) => {
@@ -190,6 +195,26 @@ const TimelineEvents = () => {
   };
 
   const dropdownRef = useRef<any>(null);
+  const formatEventData = (data: any) => {
+    return data.map((item: any, idx: any) => {
+      return { ...item, type: idx % 2 === 1 ? "friends" : "everyone" };
+    });
+  };
+
+  // const handlFilteredData = (type: string): any => {
+  //   switch (type) {
+  //     case "friends":
+  //       setEventData(evetData.filter((item: any) => item?.type === "friends"));
+  //       setActive("friends");
+  //       break;
+  //     case "everyone":
+  //       setEventData(evetData.filter((item: any) => item?.type === "everyone"));
+  //       setActive("everyone");
+  //       break;
+  //     default:
+  //       evetData;
+  //   }
+  // };
 
   const fetchData = (endpoint: string) => {
     setIsLoading(true)
@@ -226,6 +251,7 @@ const TimelineEvents = () => {
   }, []);
 
   const renderCardData = filteredEvent.length > 0 && filteredEvent.map((item) => (
+
     <TimeLineEventCard key={item.id} {...(item as TimelineCardProps)} />
   ));
 
@@ -234,6 +260,7 @@ const TimelineEvents = () => {
       <div className="flex flex-col sm:flex-row justify-between w-full relative">
         <div className="flex p-2 md:p-4 justify-start md:justify-center mb-3 md:mb-0 items-center gap-5 sm:gap-10 ">
           <button
+
             className={`transform transition-all ease-in-out duration-200 text-xl ${active === "friends"
               ? "border-b-2 border-[#3F3849] font-bold text-[#3F3849]"
               : "text-[#84838B] font-medium"
@@ -254,6 +281,7 @@ const TimelineEvents = () => {
               setActive("everyone")
               fetchData('events/all')
             }}
+
           >
             Everyone
           </button>
@@ -290,13 +318,14 @@ const TimelineEvents = () => {
           </div>
         </div>
       </div>
+
       {eventData.detail && <p className="mt-2 ps-2 md:ps-4 text-xl text-[#84838B]">
         No Event found for <span className="font-semibold capitalize text-[#3F3849]">{active}</span>
       </p>}
       {isLoading && <div className="pt-4"><LoadingSVG /></div>}
       {/* Pictures Grid Container */}
       <div className="mt-9 grid md:grid-cols-2 xl:grid-cols-3 gap-x-6 gap-y-8 ">
-        {renderCardData}
+        {evetData && renderCardData}
       </div>
     </div>
   );
