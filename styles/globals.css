@@ -29,6 +29,7 @@
 }
 
 .MuiInputBase-adornedEnd {
+
   display: flex;
   flex-direction: row-reverse;
 }
@@ -43,6 +44,18 @@
   max-width: 157px;
 }
 
+  .datepicker .MuiInputAdornment-root svg {
+    color: #3F3849;
+  }
+  #btn {
+    color: black;
+    font-family: Inter;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 28px;
+  letter-spacing: 0.01em;
+
+  }
 .timepicker .MuiInputAdornment-root svg {
   color: #ffc6bc;
 }

@@ -16,10 +16,23 @@ export default function Header({ title, info }: HeaderProps) {
 
       {/* Search */}
       
+      
       <SearchBar />
+      {/* <div className="w-full md:w-60 xl:w-[352px] h-[40px] md:h-[52px] relative">
+        <input
+          placeholder="Find an event"
+          className="h-full w-full border border-black/40 rounded-2xl p-2 pl-16 text-primary placeholder:text-brand-gray-600 focus:outline-none bg-transparent"
+        />
+        <div className="absolute left-5 top-2 md:top-5">
+          <SearchIcon />
+        </div>
+      </div>  */}
+    
+        {/* <SearchBar /> */}
 
       {/* Profile */}
-      <div className="hidden lg:flex gap-2 items-center">
+
+      <div className="flex gap-2 items-center">
         <div className="w-12 h-12 rounded-full overflow-hidden">
           <Image
             src={Avatar}
