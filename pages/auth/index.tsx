@@ -6,7 +6,7 @@ import Google from "@/public/assets/icon/Google.svg";
 import Twitter from "@/public/assets/icon/Twitter.svg";
 import PageIndicator from "@/public/assets/icon/pageIndicator.svg";
 import http from "@/http/interceptor";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { ClipLoader } from "react-spinners";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -147,7 +147,6 @@ export default function Auth() {
                   />
                   Continue with Twitter
                 </button>
-
                 {/* </Link> */}
               </div>
               <p className="mt-6 text-[1rem] text-gray-600">

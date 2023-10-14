@@ -2,7 +2,7 @@ import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 import type { Metadata } from "next";
 import { useEffect } from "react";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import http from "@/http/interceptor";
 import { AuthProvider } from "@/provider/AuthProvider";
 
