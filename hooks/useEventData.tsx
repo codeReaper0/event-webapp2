@@ -12,11 +12,12 @@ export function useEventData() {
       method: "GET",
       headers: {
         'content-type': 'application/json',
+        'X-CSRFToken': 'f0ohqnvYQ1qyD0RDeVC8jeP1Wf6H5lPH',
       },
     })
     .then((response) => {
       if (!response.ok) {
-        throw new Error('Network response was not ok');
+        throw new Error('Network response was not ok'); // Customize this error message
       }
       return response.json();
     })
@@ -30,6 +31,8 @@ export function useEventData() {
     })
     .catch((err) => {
       setError(err.message);
+      console.log(err);
+      console.log(err.message);
     });
   }
   

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import MainLayout from "@/components/layout/mainLayout";
 import MyCalendar from "@/components/layout/myCalendar";
 import Header from "@/components/header";
-import { useEventData } from '@/components/hooks/useEventData';
+import { useEventData } from "@/hooks/useEventData";
 
 export default function Calendar() {
   const { events, error, loading } = useEventData();
